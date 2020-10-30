@@ -1,0 +1,126 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon2.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon1.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon_kick.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon_kick2.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon_kick1.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon_airslash.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonWalk.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonWalk2.tres" type="Texture" id=9]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonWalk1.tres" type="Texture" id=10]
+[ext_resource path="res://Instances/Main Character/playerController.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonJump1.tres" type="Texture" id=12]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonJump.tres" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": false,
+"name": "idle",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "jump attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "airslash",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "ground_kick",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.1815, 29.9921 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "airslash"
+length = 0.56
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 45.0, 90.0, 135.0, 180.0, 225.0, 270.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 2 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 29.2917
+
+[node name="Node2D" type="KinematicBody2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 11 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -0.629961 )
+frames = SubResource( 1 )
+animation = "fall"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.2599, -0.629969 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/airslash = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.629974, -0.31497 )
+rotation = 3.07178
+shape = SubResource( 4 )
