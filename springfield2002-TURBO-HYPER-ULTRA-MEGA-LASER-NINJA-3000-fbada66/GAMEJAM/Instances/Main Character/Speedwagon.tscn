@@ -17,23 +17,28 @@
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ) ],
-"loop": false,
+"loop": true,
 "name": "idle",
-"speed": 6.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump",
-"speed": 10.0
+"speed": 3.5
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": false,
 "name": "fall",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
+}, {
 "frames": [  ],
 "loop": true,
 "name": "jump attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "ground_kick",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -45,11 +50,6 @@ animations = [ {
 "loop": true,
 "name": "walk",
 "speed": 12.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "ground_kick",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -57,7 +57,8 @@ extents = Vector2( 22.1815, 29.9921 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "airslash"
-length = 0.56
+length = 0.7
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:frames")
 tracks/0/interp = 1
@@ -65,47 +66,49 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
 "update": 1,
-"values": [ SubResource( 1 ) ]
+"values": [  ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
-tracks/1/interp = 2
-tracks/1/loop_wrap = false
+tracks/1/path = NodePath("CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0.0, 45.0, 90.0, 135.0, 180.0, 225.0, 270.0, 360.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:shape")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ SubResource( 2 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "airslash", "airslash" ]
+}
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 29.2917
+radius = 35.137
 
 [node name="Node2D" type="KinematicBody2D"]
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -0.629961 )
+rotation = 5.49779
+scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 1 )
-animation = "fall"
+animation = "airslash"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
