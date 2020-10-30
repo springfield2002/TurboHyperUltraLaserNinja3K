@@ -27,7 +27,7 @@ func _physics_process(delta):
 		attack = 0
 		$AnimationPlayer.stop(true)
 		$AnimatedSprite.rotation_degrees = 0
-		$Area2D/CollisionShape2D.disabled = true
+		$AirSlash/CollisionShape2D.disabled = true
 	if Input.is_action_just_pressed("jump"):	
 		if is_on_floor():
 			movement.y = -jump
@@ -68,8 +68,11 @@ func update_animations():
 	if Input.is_action_pressed("attack"):
 		attack = 1
 		if !is_on_floor():
-			$Area2D/CollisionShape2D.disabled = false
+			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.play("airslash")
-			
-
-
+		if is_on_floor():
+			$ground_kick/CollisionShape2D.disabled = false
+			$AnimatedSprite.play("ground_kick")
+			yield($AnimatedSprite, "animation_finished")
+			$ground_kick/CollisionShape2D.disabled = true
+		

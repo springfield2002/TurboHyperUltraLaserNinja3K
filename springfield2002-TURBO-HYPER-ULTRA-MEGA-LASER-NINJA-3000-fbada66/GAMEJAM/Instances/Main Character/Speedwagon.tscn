@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon2.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon1.tres" type="Texture" id=2]
@@ -21,14 +21,24 @@ animations = [ {
 "name": "idle",
 "speed": 3.5
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": false,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "airslash",
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "ground_kick",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -36,24 +46,14 @@ animations = [ {
 "name": "jump attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "ground_kick",
+"name": "airslash",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk",
-"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 22.1815, 29.9921 )
+extents = Vector2( 22.1815, 35.2171 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "airslash"
@@ -96,19 +96,24 @@ tracks/2/keys = {
 "values": [ "airslash", "airslash" ]
 }
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="Animation" id=4]
+resource_name = "kick"
+
+[sub_resource type="CircleShape2D" id=5]
 radius = 35.137
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 7.10781 )
 
 [node name="Node2D" type="KinematicBody2D"]
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -0.629961 )
-rotation = 5.49779
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 1 )
-animation = "airslash"
+animation = "ground_kick"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -117,14 +122,22 @@ shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/airslash = SubResource( 3 )
+anims/kick = SubResource( 4 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AirSlash" type="Area2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirSlash"]
 position = Vector2( 0.629974, -0.31497 )
 rotation = 3.07178
-shape = SubResource( 4 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="ground_kick" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground_kick"]
+position = Vector2( 32.7033, -16.8471 )
+shape = SubResource( 6 )
 disabled = true
