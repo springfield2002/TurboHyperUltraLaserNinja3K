@@ -13,3 +13,8 @@ position = Vector2( -2, 4 )
 
 [node name="Node2D3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 258, 480 )
+movement = Vector2( 0, 0 )
+speed = 100
+jump = 300
+gravity = 10
+life = 5

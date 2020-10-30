@@ -26,10 +26,10 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump",
-"speed": 10.0
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "airslash",
+"speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
@@ -41,10 +41,10 @@ animations = [ {
 "name": "ground_kick",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "airslash",
-"speed": 5.0
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
 "loop": true,
@@ -127,3 +127,4 @@ __meta__ = {
 position = Vector2( 0.629974, -0.31497 )
 rotation = 3.07178
 shape = SubResource( 4 )
+disabled = true

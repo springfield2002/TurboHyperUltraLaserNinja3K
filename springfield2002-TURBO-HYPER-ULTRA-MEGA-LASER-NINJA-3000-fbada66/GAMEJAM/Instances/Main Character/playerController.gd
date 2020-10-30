@@ -15,7 +15,6 @@ var eixo_horizontal
 
 
 func _physics_process(delta):
-	print(movement.y)
 	if !is_on_floor():
 		movement.y += gravity
 		if attack == 1:
@@ -28,6 +27,7 @@ func _physics_process(delta):
 		attack = 0
 		$AnimationPlayer.stop(true)
 		$AnimatedSprite.rotation_degrees = 0
+		$Area2D/CollisionShape2D.disabled = true
 	if Input.is_action_just_pressed("jump"):	
 		if is_on_floor():
 			movement.y = -jump
@@ -68,7 +68,7 @@ func update_animations():
 	if Input.is_action_pressed("attack"):
 		attack = 1
 		if !is_on_floor():
-			
+			$Area2D/CollisionShape2D.disabled = false
 			$AnimationPlayer.play("airslash")
 			
 
