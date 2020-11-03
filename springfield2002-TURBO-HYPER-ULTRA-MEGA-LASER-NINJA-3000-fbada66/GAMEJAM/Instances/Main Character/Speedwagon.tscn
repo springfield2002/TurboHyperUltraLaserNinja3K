@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon2.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon1.tres" type="Texture" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://Instances/Main Character/playerController.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagonJump1.tres" type="Texture" id=12]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagonJump.tres" type="Texture" id=13]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonHIT.tres" type="Texture" id=14]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonDeath.tres" type="Texture" id=15]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonDeath3.tres" type="Texture" id=16]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagonDeath2.tres" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -20,6 +24,16 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 3.5
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "ground_kick",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
@@ -31,16 +45,6 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "ground_kick",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "jump attack",
@@ -49,6 +53,16 @@ animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "airslash",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "death",
 "speed": 5.0
 } ]
 
@@ -112,7 +126,7 @@ script = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 1 )
-animation = "ground_kick"
+animation = "death"
 frame = 2
 playing = true
 
