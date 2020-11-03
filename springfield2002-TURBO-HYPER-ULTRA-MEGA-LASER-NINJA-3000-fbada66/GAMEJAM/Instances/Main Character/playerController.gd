@@ -71,7 +71,6 @@ func update_animations():
 			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.play("airslash")
 		if is_on_floor() and eixo_horizontal == 0:
-			
 			$ground_kick/CollisionShape2D.disabled = false
 			$AnimatedSprite.play("ground_kick")
 			yield($AnimatedSprite, "animation_finished")
