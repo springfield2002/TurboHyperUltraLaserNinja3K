@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Turbo_Ninja.png-9d50f9bd893772df0694563ee92cf6cc.stex"
+path="res://.import/Turbo_Ninja.png-61cba958627317fd87b1b39333c0a434.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game_elements/Player/Turbo_Ninja.png"
-dest_files=[ "res://.import/Turbo_Ninja.png-9d50f9bd893772df0694563ee92cf6cc.stex" ]
+source_file="res://Assets/Game_elements/Player/UltraLaserNinja3000/Turbo_Ninja.png"
+dest_files=[ "res://.import/Turbo_Ninja.png-61cba958627317fd87b1b39333c0a434.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
