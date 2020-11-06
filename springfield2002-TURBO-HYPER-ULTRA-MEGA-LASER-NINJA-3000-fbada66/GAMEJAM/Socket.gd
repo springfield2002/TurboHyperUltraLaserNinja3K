@@ -18,7 +18,7 @@ func _exit_tree():
 	disconnect_from_server()
 
 func connect_to_server():
-	var ip = "192.168.15.53"
+	var ip = "192.168.0.52"
 	var port = 80
 	print("Connecting to server: %s : %s" % [ip, str(port)])
 	var connect = client.connect_to_host(ip, port)
@@ -55,16 +55,17 @@ func poll_server():
 
 func on_text_received(text): #"1 Sobe"
 	var command_array = text.split(" ")
-	print(command_array)
-	if command_array.size() < 2:
-		return
-		
-	if str(command_array[1]) == "Sobe":
-		emit_signal("sobe", command_array[0])
-	elif command_array[1] == "Desce":
-		emit_signal("desce", command_array[0])
-	else:
-		emit_signal("potenciometro", command_array[0], command_array[1])
+	
+	if str(command_array[0]) == "cima":
+		emit_signal("cima")
+	elif command_array[0] == "direita":
+		emit_signal("direita")
+	elif command_array[0] == "esquerda":
+		emit_signal("esquerda")
+	elif command_array[0] == "ataque":
+		emit_signal("ataque")
+	elif command_array[0] == "parado":
+		emit_signal("parado")
 
 func write_text(text):
 	if connected and client.is_connected_to_host():
