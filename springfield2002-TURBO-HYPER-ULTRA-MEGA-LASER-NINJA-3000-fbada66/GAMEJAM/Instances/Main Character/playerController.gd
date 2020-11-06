@@ -12,6 +12,8 @@ export var life = 5
 signal hit
 var eixo_horizontal
 
+func _ready():
+	Socket.connect_to_server()
 
 
 func _physics_process(delta):
