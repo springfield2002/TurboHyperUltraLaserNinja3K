@@ -1,3 +1,48 @@
-[gd_scene format=2]
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/idle/GUNDAM_idle2.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/idle/GUNDAM_idle.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk3.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk6.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk5.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk2.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk1.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk4.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/jump/GUNDAM_jump.tres" type="Texture" id=9]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/jump/GUNDAM_land.tres" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "land",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 44.7763, 46.029 )
 
 [node name="Node2D" type="KinematicBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "land"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Turbo_Ninja.png-61cba958627317fd87b1b39333c0a434.stex"
+path="res://.import/RobotNinja2.png-3c8960932e138a433948c4461846ad7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game_elements/Player/UltraLaserNinja3000/Turbo_Ninja.png"
-dest_files=[ "res://.import/Turbo_Ninja.png-61cba958627317fd87b1b39333c0a434.stex" ]
+source_file="res://Assets/Game_elements/Player/RobotNinja/RobotNinja2.png"
+dest_files=[ "res://.import/RobotNinja2.png-3c8960932e138a433948c4461846ad7f.stex" ]
 
 [params]
 
