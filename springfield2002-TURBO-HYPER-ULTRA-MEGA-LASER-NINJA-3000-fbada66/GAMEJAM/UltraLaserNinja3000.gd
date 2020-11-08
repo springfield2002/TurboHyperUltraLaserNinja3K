@@ -42,26 +42,33 @@ func _physics_process(delta):
 	
 func update_animations():
 	if movement.x > 0:
-		$AnimatedSprite.scale.x = 1.2
+		$AnimatedSprite.scale.x = 1.5
 	elif movement.x < 0:
-		$AnimatedSprite.scale.x = -1.2
+		$AnimatedSprite.scale.x = -1.5
+	
 	if is_on_floor():
 		if abs(movement.x) > 0:
 			if dano != 1:
 				$AnimatedSprite.play("walk")
+				$AnimationPlayer.stop()
 		else:
 			if dano != 1:
-				$AnimatedSprite.play("idle")
-		
+				$AnimationPlayer.play("idle")
+			
+			if Input.is_action_pressed("down"):
+				$AnimatedSprite.stop()
+				$AnimationPlayer.play("abaixar")
+			
+			if Input.is_action_just_released("down"):
+				$AnimationPlayer.play_backwards("abaixar")
 	
-		
 	if Input.is_action_pressed("jump"):
 		$AnimatedSprite.play("jump")
 			
 	if Input.is_action_pressed("attack"):
 		attack = 1
 		
-		
+	
 
 
 
