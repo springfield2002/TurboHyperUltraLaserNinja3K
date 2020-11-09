@@ -318,6 +318,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( -73.063, -35.227 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("airslash/airslash:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=5]
 length = 1.5
@@ -841,10 +853,11 @@ height = 69.0103
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 5.526, -7.937 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( -14.3, -17.223 )
+scale = Vector2( -1.5, 1.5 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "airslash"
+frame = 5
 offset = Vector2( 2, 0 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
@@ -868,7 +881,7 @@ anims/walking = SubResource( 11 )
 [node name="airslash" type="Area2D" parent="."]
 
 [node name="airslash" type="CollisionShape2D" parent="airslash"]
-position = Vector2( 61.063, -20.227 )
+position = Vector2( -73.063, -35.227 )
 shape = SubResource( 9 )
 disabled = true
 
