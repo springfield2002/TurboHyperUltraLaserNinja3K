@@ -4,13 +4,14 @@ extends KinematicBody2D
 
 export  var movement = Vector2(0,0)
 export var speed  = 100
-export var jump = 300
+export var jump = 500
 export var gravity = 10
 var second_jump = 3
 var dano = 0
 var attack = 0
 var move = 1
 var down = 1
+
 export var life = 5
 signal hit
 var eixo_horizontal
@@ -27,10 +28,7 @@ func _physics_process(delta):
 	
 		if is_on_floor():
 			movement.y = -jump
-			second_jump  -= 1
-		if !is_on_floor() and second_jump > 0:
-			movement.y = -jump
-			second_jump  -= 1
+		
 	
 	eixo_horizontal = Input.get_action_strength("right") - Input.get_action_strength("left")
 	movement.x = eixo_horizontal * speed
@@ -46,10 +44,14 @@ func _physics_process(delta):
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x =1.5
-		
+		$"basic ATK/CollisionShape2D".scale.x = 1
+		if $airslash/airslash.position.x < 0:
+			$airslash/airslash.position.x *= -1
 	elif movement.x < 0:
 		$AnimatedSprite.scale.x = -1.5
-	
+		$"basic ATK/CollisionShape2D".scale.x = -1
+		if $airslash/airslash.position.x > 0:
+			$airslash/airslash.position.x *= -1
 	
 	if is_on_floor():
 		if abs(movement.x) > 0:
@@ -82,14 +84,25 @@ func update_animations():
 		$AnimationPlayer.stop()
 		dano = 1
 		if !is_on_floor():
-			$AnimationPlayer.play("airslash")
-			yield($AnimationPlayer, "animation_finished")
-			dano = 0
+			if movement.x > 0:
+				$AnimationPlayer.play("airslash")
+				yield($AnimationPlayer, "animation_finished")
+				dano = 0
+			if movement.x < 0:
+				$AnimationPlayer.play("airslash(L)")
+				yield($AnimationPlayer, "animation_finished")
+				dano = 0
+			
 		else:
 			dano = 1
-			$AnimationPlayer.play("strongATK")	
-			yield($AnimationPlayer, "animation_finished")
-			dano = 0
+			if movement.x > 0:
+				$AnimationPlayer.play("strongATK")	
+			
+			if movement.x < 0:
+				$AnimationPlayer.play("strongATK (L)")	
+		
+		yield($AnimationPlayer, "animation_finished")
+		dano = 0
 		
 	
 
