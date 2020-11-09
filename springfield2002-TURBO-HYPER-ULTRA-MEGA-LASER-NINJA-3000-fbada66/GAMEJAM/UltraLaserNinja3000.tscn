@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/idle/GUNDAM_idle2.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/idle/GUNDAM_idle.tres" type="Texture" id=2]
@@ -378,6 +378,45 @@ tracks/4/keys = {
 "values": [ Vector2( 13.526, -7.937 ), Vector2( 13.526, -7.937 ) ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "shoot" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 22.965, -19.264 ) ]
+}
+
 [sub_resource type="Animation" id=8]
 resource_name = "strongATK"
 length = 3.0
@@ -436,10 +475,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 2.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 32.542, -9.524 ), Vector2( 24.605, -9.524 ) ]
+"values": [ Vector2( 61.063, -20.227 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Body:position")
@@ -478,10 +517,10 @@ height = 69.0103
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 10.5, -10.851 )
+position = Vector2( -5.57595, -7.37194 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 1 )
-animation = "dash"
+animation = "shoot"
 offset = Vector2( 2, 0 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
@@ -494,17 +533,19 @@ anims/abaixar = SubResource( 7 )
 anims/airslash = SubResource( 3 )
 anims/basic_atk = SubResource( 4 )
 anims/idle = SubResource( 9 )
+anims/shoot = SubResource( 11 )
 anims/strongATK = SubResource( 8 )
 
 [node name="airslash" type="Area2D" parent="."]
 visible = false
 
 [node name="airslash" type="CollisionShape2D" parent="airslash"]
-position = Vector2( 32.542, -9.524 )
+position = Vector2( 61.063, -20.227 )
 shape = SubResource( 10 )
 disabled = true
 
 [node name="basic ATK" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="basic ATK"]
 position = Vector2( 97.1324, -47.1075 )
