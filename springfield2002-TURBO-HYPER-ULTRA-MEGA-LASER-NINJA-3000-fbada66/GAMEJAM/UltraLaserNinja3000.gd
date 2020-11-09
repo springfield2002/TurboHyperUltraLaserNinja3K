@@ -9,6 +9,8 @@ export var gravity = 10
 var second_jump = 3
 var dano = 0
 var attack = 0
+var move = 1
+var down = 1
 export var life = 5
 signal hit
 var eixo_horizontal
@@ -22,6 +24,7 @@ func _physics_process(delta):
 		movement.y += gravity
 		
 	if Input.is_action_just_pressed("jump"):	
+	
 		if is_on_floor():
 			movement.y = -jump
 			second_jump  -= 1
@@ -42,31 +45,51 @@ func _physics_process(delta):
 	
 func update_animations():
 	if movement.x > 0:
-		$AnimatedSprite.scale.x = 1.5
+		$AnimatedSprite.scale.x =1.5
+		
 	elif movement.x < 0:
 		$AnimatedSprite.scale.x = -1.5
+	
 	
 	if is_on_floor():
 		if abs(movement.x) > 0:
 			if dano != 1:
-				$AnimatedSprite.play("walk")
-				$AnimationPlayer.stop()
+				$AnimationPlayer.play("walking")
+				
 		else:
-			if dano != 1:
-				$AnimationPlayer.play("idle")
-			
-			if Input.is_action_pressed("down"):
-				$AnimatedSprite.stop()
+			if Input.is_action_pressed("down") and down == 1:
+				$AnimationPlayer.stop()
 				$AnimationPlayer.play("abaixar")
+				yield($AnimationPlayer, "animation_finished")
+				$AnimatedSprite.play("DUCKED")
+				
 			
-			if Input.is_action_just_released("down"):
+			if Input.is_action_just_released("down") and down == 0:
 				$AnimationPlayer.play_backwards("abaixar")
+				yield($AnimationPlayer, "animation_finished")
+				down = 1
+			else:
+				if dano != 1:
+					$AnimationPlayer.play("idle")
 	
-	if Input.is_action_pressed("jump"):
+	
+	
+	if Input.is_action_just_pressed("jump"):
+		$AnimationPlayer.stop()
 		$AnimatedSprite.play("jump")
 			
 	if Input.is_action_pressed("attack"):
-		attack = 1
+		$AnimationPlayer.stop()
+		dano = 1
+		if !is_on_floor():
+			$AnimationPlayer.play("airslash")
+			yield($AnimationPlayer, "animation_finished")
+			dano = 0
+		else:
+			dano = 1
+			$AnimationPlayer.play("strongATK")	
+			yield($AnimationPlayer, "animation_finished")
+			dano = 0
 		
 	
 
