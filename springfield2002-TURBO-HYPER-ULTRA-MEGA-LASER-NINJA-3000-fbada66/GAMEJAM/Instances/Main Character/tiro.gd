@@ -15,7 +15,7 @@ func set_direction(dir):
 func _physics_process(delta):
 	movement.x = speed * delta * direction
 	translate(movement)
-	$AnimatedSprite.play("attack")
+	
 
 	
 func _on_VisibilityNotifier2D_screen_exited():

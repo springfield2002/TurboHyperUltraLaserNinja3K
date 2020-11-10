@@ -46,10 +46,12 @@ func _physics_process(delta):
 		if sign($Position2D.position.x) == -1:
 			$Position2D.position.x *= -1
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
+		movement.x = 0
 		dano = 1
-		$AnimatedSprite.play("shoot")
-		yield($AnimatedSprite,"animation_finished")
+		$AnimationPlayer.play("shoot")
+		yield($AnimationPlayer,"animation_finished")
+		
 		var cloudattack = laser.instance()
 		if sign($Position2D.position.x) == 1:
 			cloudattack.set_direction(1)
@@ -59,6 +61,8 @@ func _physics_process(delta):
 		cloudattack.position = $Position2D.global_position
 		dano = 0
 	
+	if Input.is_action_just_released("shoot"):
+		$AnimationPlayer.play("release_shot")
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x =1.5
@@ -80,8 +84,8 @@ func update_animations():
 				$AnimationPlayer.stop()
 				$AnimatedSprite.play("dash")
 				speed = 500
-			if Input.is_action_just_released("dash"):
-				speed = 100
+		if Input.is_action_just_released("dash"):
+			speed = 100
 				
 		if Input.is_action_pressed("down") or Input.is_action_just_pressed("down"):
 			movement.x = 0
