@@ -114,10 +114,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "duck", "abaixar" ]
+"values": [ "duck" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
@@ -166,30 +166,6 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 5.526, -7.937 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AnimatedSprite:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("AnimationPlayer:pause_mode")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -253,6 +229,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 73.063, -35.227 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("airslash/airslash:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -853,11 +841,11 @@ height = 69.0103
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -14.3, -17.223 )
-scale = Vector2( -1.5, 1.5 )
+position = Vector2( -6.598, -10.75 )
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 1 )
-animation = "airslash"
-frame = 5
+animation = "shoot"
+frame = 2
 offset = Vector2( 2, 0 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
@@ -881,7 +869,7 @@ anims/walking = SubResource( 11 )
 [node name="airslash" type="Area2D" parent="."]
 
 [node name="airslash" type="CollisionShape2D" parent="airslash"]
-position = Vector2( -73.063, -35.227 )
+position = Vector2( 73.063, -35.227 )
 shape = SubResource( 9 )
 disabled = true
 
@@ -892,3 +880,6 @@ position = Vector2( 97.132, -47.107 )
 rotation = 1.07338
 shape = SubResource( 10 )
 disabled = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 24.3225, -62.6732 )
