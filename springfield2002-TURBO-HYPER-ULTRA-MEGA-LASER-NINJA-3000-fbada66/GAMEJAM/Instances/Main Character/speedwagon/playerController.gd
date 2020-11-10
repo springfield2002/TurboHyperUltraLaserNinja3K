@@ -11,7 +11,7 @@ var attack = 0
 export var life = 5
 signal hit
 var eixo_horizontal
-
+var down = 1
 func _ready():
 	Socket.connect_to_server()
 
@@ -24,27 +24,45 @@ func _physics_process(delta):
 		if movement.y > 0 && attack == 0:
 			$AnimatedSprite.play("fall")
 
-	else:
+	if is_on_floor():
 		second_jump = 3
 		attack = 0
 		$AnimationPlayer.stop(true)
 		$AnimatedSprite.rotation_degrees = 0
 		$AirSlash/CollisionShape2D.disabled = true
-	if Input.is_action_just_pressed("jump"):	
-		if is_on_floor():
-			movement.y = -jump
-			second_jump  -= 1
-		if !is_on_floor() and second_jump > 0:
-			movement.y = -jump
-			second_jump  -= 1
+		
+		if Input.is_action_pressed("down") or Input.is_action_just_pressed("down"):
+			movement.x = 0
+			dano = 1
+			if down == 1:
+				$AnimationPlayer.play("duck")
+				yield($AnimationPlayer,"animation_finished")
+				down = 0
+		
+		if Input.is_action_just_released("down") and down == 0:
+			$AnimationPlayer.play_backwards("duck")	
+			yield($AnimationPlayer,"animation_finished")
+			dano = 0
+			down = 1
+		
+		if Input.is_action_just_pressed("jump"):	
+			if is_on_floor():
+				movement.y = -jump
+				second_jump  -= 1
+			if !is_on_floor() and second_jump > 0:
+				movement.y = -jump
+				second_jump  -= 1
 	
-	eixo_horizontal = Input.get_action_strength("right") - Input.get_action_strength("left")
-	movement.x = eixo_horizontal * speed
+		if dano != 1:
+			eixo_horizontal = Input.get_action_strength("right") - Input.get_action_strength("left")
+			movement.x = eixo_horizontal * speed
 	
 	if is_on_ceiling():
 		movement.y = 0
 		
 	move_and_slide(movement, Vector2.UP)
+	
+	
 		
 	update_animations()
 		
