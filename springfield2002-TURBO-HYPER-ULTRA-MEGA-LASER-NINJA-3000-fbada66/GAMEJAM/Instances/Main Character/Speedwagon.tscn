@@ -25,24 +25,24 @@ animations = [ {
 "name": "idle",
 "speed": 3.5
 }, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "hit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
 "name": "jump",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "ground_kick",
 "speed": 2.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": false,
-"name": "fall",
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "airslash",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
@@ -50,19 +50,19 @@ animations = [ {
 "name": "walk",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "airslash",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": false,
-"name": "death",
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [  ],
 "loop": true,
 "name": "jump attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "death",
 "speed": 5.0
 } ]
 
@@ -126,8 +126,7 @@ script = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 1 )
-animation = "ground_kick"
-frame = 2
+animation = "airslash"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
