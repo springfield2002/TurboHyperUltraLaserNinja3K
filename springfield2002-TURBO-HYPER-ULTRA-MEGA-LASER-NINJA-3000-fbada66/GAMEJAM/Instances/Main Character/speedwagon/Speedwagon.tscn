@@ -1,41 +1,53 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon2.tres" type="Texture" id=1]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon1.tres" type="Texture" id=2]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon.tres" type="Texture" id=3]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon_kick.tres" type="Texture" id=4]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon_kick2.tres" type="Texture" id=5]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon_kick1.tres" type="Texture" id=6]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagon_airslash.tres" type="Texture" id=7]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonWalk.tres" type="Texture" id=8]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonWalk2.tres" type="Texture" id=9]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonWalk1.tres" type="Texture" id=10]
-[ext_resource path="res://Instances/Main Character/playerController.gd" type="Script" id=11]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonJump1.tres" type="Texture" id=12]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonJump.tres" type="Texture" id=13]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonHIT.tres" type="Texture" id=14]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonDeath.tres" type="Texture" id=15]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonDeath3.tres" type="Texture" id=16]
-[ext_resource path="res://Assets/Game_elements/Player/speedwagonDeath2.tres" type="Texture" id=17]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon2.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon1.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/airslash/speedwagon_airslash.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/walk/speedwagonWalk.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/walk/speedwagonWalk2.tres" type="Texture" id=9]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/walk/speedwagonWalk1.tres" type="Texture" id=10]
+[ext_resource path="res://Instances/Main Character/speedwagon/playerController.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/jump/speedwagonJump1.tres" type="Texture" id=12]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/jump/speedwagonJump.tres" type="Texture" id=13]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/hit/speedwagonHIT.tres" type="Texture" id=14]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath.tres" type="Texture" id=15]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath3.tres" type="Texture" id=16]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath2.tres" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "idle",
 "speed": 3.5
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "jump attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [  ],
 "loop": false,
 "name": "ground_kick",
 "speed": 2.0
@@ -45,73 +57,14 @@ animations = [ {
 "name": "airslash",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "walk",
 "speed": 8.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": false,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "jump attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "death",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 22.1815, 35.2171 )
-
-[sub_resource type="Animation" id=3]
-resource_name = "airslash"
-length = 0.7
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:frames")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:shape")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ SubResource( 2 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AnimatedSprite:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "airslash", "airslash" ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "kick"
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 35.137
@@ -132,10 +85,6 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.2599, -0.629969 )
 shape = SubResource( 2 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/airslash = SubResource( 3 )
-anims/kick = SubResource( 4 )
 
 [node name="AirSlash" type="Area2D" parent="."]
 __meta__ = {

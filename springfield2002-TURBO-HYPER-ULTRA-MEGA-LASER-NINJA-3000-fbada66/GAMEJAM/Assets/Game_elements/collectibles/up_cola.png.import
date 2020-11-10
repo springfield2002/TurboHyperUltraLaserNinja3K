@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/up_cola.png-66c790a08107423cf56b060fd3014f10.stex"
+path="res://.import/up_cola.png-a4d26ea5cc7c18bbcaa0cf09c3557b17.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game_elements/up_cola.png"
-dest_files=[ "res://.import/up_cola.png-66c790a08107423cf56b060fd3014f10.stex" ]
+source_file="res://Assets/Game_elements/collectibles/up_cola.png"
+dest_files=[ "res://.import/up_cola.png-a4d26ea5cc7c18bbcaa0cf09c3557b17.stex" ]
 
 [params]
 

@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/walk/GUNDAM_walk4.tres" type="Texture" id=8]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/jump/GUNDAM_jump.tres" type="Texture" id=9]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/jump/GUNDAM_land.tres" type="Texture" id=10]
-[ext_resource path="res://UltraLaserNinja3000.gd" type="Script" id=11]
+[ext_resource path="res://Instances/Main Character/ULN3K/UltraLaserNinja3000.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/SwordAtk_Basic/GUNDAM_swordAtt1.tres" type="Texture" id=12]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/SwordAtk_Basic/GUNDAM_swordAtt2.tres" type="Texture" id=13]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/SwordAtk_Basic/GUNDAM_swordAtt0.tres" type="Texture" id=14]
@@ -36,6 +36,7 @@
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/agachar/GUNDAM_baixo2.tres" type="Texture" id=34]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/agachar/GUNDAM_baixo1.tres" type="Texture" id=35]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/agachar/GUNDAM_baixo.tres" type="Texture" id=36]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

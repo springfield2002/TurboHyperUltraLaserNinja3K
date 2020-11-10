@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Ninja.png-d91fcda2815813bb72afb53dfb33dbde.stex"
+path="res://.import/Ninja.png-3008dbdc34afb1a2773554fcb64be8ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game_elements/Player/Ninja.png"
-dest_files=[ "res://.import/Ninja.png-d91fcda2815813bb72afb53dfb33dbde.stex" ]
+source_file="res://Assets/Game_elements/Player/speedwagon/Ninja.png"
+dest_files=[ "res://.import/Ninja.png-3008dbdc34afb1a2773554fcb64be8ab.stex" ]
 
 [params]
 
