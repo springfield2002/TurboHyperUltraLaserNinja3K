@@ -23,6 +23,26 @@ animations = [ {
 "name": "idle",
 "speed": 3.5
 }, {
+"frames": [ ExtResource( 14 ) ],
+"loop": false,
+"name": "hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "ground_kick",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "airslash",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": false,
 "name": "fall",
@@ -32,11 +52,6 @@ animations = [ {
 "loop": false,
 "name": "death",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "walk",
-"speed": 8.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": false,
@@ -48,25 +63,10 @@ animations = [ {
 "name": "jump attack",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": false,
-"name": "hit",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": false,
-"name": "ground_kick",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": false,
-"name": "airslash",
-"speed": 5.0
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -210,7 +210,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "walking"
-length = 0.6
+length = 0.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
@@ -231,7 +231,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 1 ]
@@ -287,12 +287,8 @@ position = Vector2( 1.2599, -0.629969 )
 shape = SubResource( 2 )
 
 [node name="AirSlash" type="Area2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirSlash"]
-visible = false
 position = Vector2( 0.629974, -0.31497 )
 rotation = 3.07178
 shape = SubResource( 3 )
