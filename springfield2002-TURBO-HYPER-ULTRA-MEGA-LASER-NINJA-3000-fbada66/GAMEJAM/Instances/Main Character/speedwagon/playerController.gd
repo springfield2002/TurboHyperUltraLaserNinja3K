@@ -22,6 +22,7 @@ func _physics_process(delta):
 		if attack == 1:
 			$AnimatedSprite.rotation_degrees += $AnimatedSprite.scale.x * 37.5
 		if movement.y > 0 && attack == 0:
+			$AnimationPlayer.stop()
 			$AnimatedSprite.play("fall")
 
 	if is_on_floor():
@@ -75,9 +76,11 @@ func update_animations():
 	if is_on_floor():
 		if abs(movement.x) > 0:
 			if dano != 1:
+				$AnimationPlayer.stop()
 				$AnimatedSprite.play("walk")
 		else:
 			if dano != 1:
+				$AnimationPlayer.stop()
 				$AnimatedSprite.play("idle")
 		
 	
@@ -89,9 +92,11 @@ func update_animations():
 		attack = 1
 		if !is_on_floor():
 			$AirSlash/CollisionShape2D.disabled = false
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("airslash")
 		if is_on_floor() and eixo_horizontal == 0:
 			$ground_kick/CollisionShape2D.disabled = false
+			$AnimationPlayer.stop()
 			$AnimatedSprite.play("ground_kick")
 			yield($AnimatedSprite, "animation_finished")
 			$ground_kick/CollisionShape2D.disabled = true
