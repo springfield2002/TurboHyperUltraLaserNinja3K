@@ -18,7 +18,8 @@
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath3.tres" type="Texture" id=16]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath2.tres" type="Texture" id=17]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/kick/speedwagon_kick2.tres" type="Texture" id=18]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Instances/huds/HUD.tscn" type="PackedScene" id=19]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

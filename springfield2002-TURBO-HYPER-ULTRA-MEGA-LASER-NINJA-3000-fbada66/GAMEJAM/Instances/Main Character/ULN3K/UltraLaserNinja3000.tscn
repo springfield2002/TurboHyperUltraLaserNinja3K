@@ -36,7 +36,8 @@
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/agachar/GUNDAM_baixo2.tres" type="Texture" id=34]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/agachar/GUNDAM_baixo1.tres" type="Texture" id=35]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/agachar/GUNDAM_baixo.tres" type="Texture" id=36]
-[ext_resource path="res://HUDULTRA.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Instances/huds/HUDULTRA.tscn" type="PackedScene" id=37]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
