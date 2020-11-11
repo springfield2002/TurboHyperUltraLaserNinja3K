@@ -40,10 +40,7 @@ func _physics_process(delta):
 		if shift == 0:
 			spin = 0
 			$AirSlash/CollisionShape2D.disabled = true
-		attack = 0
-		
-		
-	
+			attack = 0
 		
 		
 		if Input.is_action_just_pressed("jump"):	
@@ -104,8 +101,6 @@ func update_animations():
 				dano = 0
 				time = 0
 				
-		
-	
 	
 	if Input.is_action_pressed("jump"):
 		if shift != 1:

@@ -10,7 +10,6 @@
 [ext_resource path="res://Scenes/transition.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/toLVL2.gd" type="Script" id=9]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 

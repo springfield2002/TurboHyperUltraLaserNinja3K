@@ -12,7 +12,7 @@ var attack = 0
 var move = 1
 var down = 1
 const laser = preload("res://Instances/Main Character/tiro.tscn")
-export var life = 5
+onready var life = $CanvasLayer/ProgressBar
 signal hit
 var eixo_horizontal
 
@@ -139,3 +139,8 @@ func update_animations():
 
 
 
+
+
+func _on_Node2D_life(amount):
+	life.set_current(life.current + 5)
+	pass # Replace with function body.
