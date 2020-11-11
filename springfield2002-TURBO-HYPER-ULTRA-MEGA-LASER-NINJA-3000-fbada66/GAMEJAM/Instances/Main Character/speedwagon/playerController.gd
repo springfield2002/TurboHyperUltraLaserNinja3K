@@ -32,19 +32,7 @@ func _physics_process(delta):
 		$AnimatedSprite.rotation_degrees = 0
 		$AirSlash/CollisionShape2D.disabled = true
 		
-		if Input.is_action_pressed("down") or Input.is_action_just_pressed("down"):
-			movement.x = 0
-			dano = 1
-			if down == 1:
-				$AnimationPlayer.play("duck")
-				yield($AnimationPlayer,"animation_finished")
-				down = 0
 		
-		if Input.is_action_just_released("down") and down == 0:
-			$AnimationPlayer.play_backwards("duck")	
-			yield($AnimationPlayer,"animation_finished")
-			dano = 0
-			down = 1
 		
 		if Input.is_action_just_pressed("jump"):	
 			if is_on_floor():
@@ -74,16 +62,26 @@ func update_animations():
 	elif movement.x < 0:
 		$AnimatedSprite.scale.x = -1.2
 	if is_on_floor():
-		if abs(movement.x) > 0:
-			if dano != 1:
-				$AnimationPlayer.stop()
-				$AnimatedSprite.play("walk")
-		else:
-			if dano != 1:
-				$AnimationPlayer.stop()
-				$AnimatedSprite.play("idle")
+		if abs(movement.x) > 0 and dano != 1:
+			$AnimationPlayer.play("walking")
+			
+		if Input.is_action_pressed("down") or Input.is_action_just_pressed("down"):
+			movement.x = 0
+			
+			if down == 1:
+				dano = 1
+				$AnimationPlayer.play("duck")
+				yield($AnimationPlayer,"animation_finished")
+				down = 0
 		
-	
+		if Input.is_action_just_released("down") and down == 0:
+			$AnimationPlayer.play_backwards("duck")	
+			yield($AnimationPlayer,"animation_finished")
+			dano = 0
+			down = 1
+		
+		if abs(movement.x) == 0 and dano != 1:
+			$AnimationPlayer.play("idle")
 		
 	if Input.is_action_pressed("jump"):
 		$AnimatedSprite.play("jump")
@@ -93,7 +91,7 @@ func update_animations():
 		if !is_on_floor():
 			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.stop()
-			$AnimationPlayer.play("airslash")
+			$AnimatedSprite.play("airslash")
 		if is_on_floor() and eixo_horizontal == 0:
 			$ground_kick/CollisionShape2D.disabled = false
 			$AnimationPlayer.stop()
