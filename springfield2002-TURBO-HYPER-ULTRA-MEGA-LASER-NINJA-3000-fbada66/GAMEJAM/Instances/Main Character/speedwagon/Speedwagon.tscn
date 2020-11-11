@@ -1,9 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon2.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon1.tres" type="Texture" id=2]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon.tres" type="Texture" id=3]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/duck/speedwagonDuck.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/kick/speedwagon_kick.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/kick/speedwagon_kick1.tres" type="Texture" id=6]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/airslash/speedwagon_airslash.tres" type="Texture" id=7]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/walk/speedwagonWalk.tres" type="Texture" id=8]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/walk/speedwagonWalk2.tres" type="Texture" id=9]
@@ -15,6 +17,8 @@
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath.tres" type="Texture" id=15]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath3.tres" type="Texture" id=16]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/death/speedwagonDeath2.tres" type="Texture" id=17]
+[ext_resource path="res://Assets/Game_elements/Player/speedwagon/kick/speedwagon_kick2.tres" type="Texture" id=18]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,17 +27,17 @@ animations = [ {
 "name": "idle",
 "speed": 3.5
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "hit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "jump",
-"speed": 10.0
-}, {
-"frames": [  ],
+"frames": [ ExtResource( 18 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "ground_kick",
 "speed": 2.0
@@ -44,18 +48,8 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
-"loop": false,
+"loop": true,
 "name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "death",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": false,
-"name": "duck",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -67,6 +61,16 @@ animations = [ {
 "loop": true,
 "name": "walk",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "duck",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -144,7 +148,47 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-resource_name = "idle"
+resource_name = "ground_kick"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "ground_kick" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ground_kick/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -208,8 +252,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "walking"
+[sub_resource type="Animation" id=8]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -273,14 +316,14 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -1 ) ]
 }
 
-[node name="Node2D" type="KinematicBody2D"]
+[node name="speedwagon" type="KinematicBody2D"]
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 1 )
-animation = "walk"
+animation = "duck"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.2599, -0.629969 )
@@ -307,5 +350,10 @@ smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/duck = SubResource( 5 )
-anims/idle = SubResource( 6 )
-anims/walking = SubResource( 7 )
+anims/ground_kick = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/walking = SubResource( 8 )
+
+[node name="CanvasLayer" parent="." groups=[
+"player",
+] instance=ExtResource( 19 )]

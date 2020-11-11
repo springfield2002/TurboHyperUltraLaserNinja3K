@@ -3,35 +3,47 @@ extends KinematicBody2D
 
 export  var movement = Vector2(0,0)
 export var speed  = 100
-export var jump = 300
+export var jump = 500
 export var gravity = 10
 var second_jump = 3
 var attack = 0
 var dano = 0
-export var life = 5
+onready var life = $CanvasLayer
 signal hit
 var eixo_horizontal
-var down = 1
+var spin = 0
+var shift = 0
+var time = 0
 func _ready():
 	Socket.connect_to_server()
+
 
 
 func _physics_process(delta):
 	if !is_on_floor():
 		movement.y += gravity
 		if attack == 1:
-			$AnimatedSprite.rotation_degrees += $AnimatedSprite.scale.x * 37.5
+			spin = 1
 		if movement.y > 0 && attack == 0:
 			$AnimationPlayer.stop()
-			$AnimatedSprite.play("fall")
+			if shift != 1:
+			  $AnimatedSprite.play("fall")
 
+	if spin == 1:
+		$AnimatedSprite.rotation_degrees += $AnimatedSprite.scale.x * 37.5
+
+	if spin == 0:
+		$AnimatedSprite.rotation_degrees = 0
+		
 	if is_on_floor():
 		second_jump = 3
+		if shift == 0:
+			spin = 0
+			$AirSlash/CollisionShape2D.disabled = true
 		attack = 0
-		$AnimationPlayer.stop(true)
-		$AnimatedSprite.rotation_degrees = 0
-		$AirSlash/CollisionShape2D.disabled = true
 		
+		
+	
 		
 		
 		if Input.is_action_just_pressed("jump"):	
@@ -42,7 +54,7 @@ func _physics_process(delta):
 				movement.y = -jump
 				second_jump  -= 1
 	
-		if attack != 1:
+		if dano != 1:
 			eixo_horizontal = Input.get_action_strength("right") - Input.get_action_strength("left")
 			movement.x = eixo_horizontal * speed
 	
@@ -59,31 +71,68 @@ func _physics_process(delta):
 func update_animations():
 	if movement.x > 0:
 		$AnimatedSprite.scale.x = 1.2
+		if $ground_kick/CollisionShape2D.position.x < 0:
+			$ground_kick/CollisionShape2D.position.x *= -1
 	elif movement.x < 0:
 		$AnimatedSprite.scale.x = -1.2
+		if $ground_kick/CollisionShape2D.position.x > 0:
+			$ground_kick/CollisionShape2D.position.x *= -1
+	
 	if is_on_floor():
-		if abs(movement.x) > 0 and dano != 1:
-			$AnimatedSprite.play("walk")
-		
 		if abs(movement.x) == 0 and dano != 1:
 			$AnimationPlayer.play("idle")
-		
-	if Input.is_action_pressed("jump"):
-		attack = 0
-		$AnimatedSprite.play("jump")
+			shift = 0
+			speed = 100
+		if abs(movement.x) > 0 and dano != 1 and shift != 1:
+			$AnimatedSprite.play("walk")
 			
-	if Input.is_action_pressed("attack"):
-		attack = 1
+			if Input.is_action_pressed("dash"):
+				dano = 1
+				shift = 1
+				$AirSlash/CollisionShape2D.disabled = false
+				$AnimationPlayer.stop()
+				$AnimatedSprite.play("airslash")
+				spin = 1
+				speed = 200
+				while time < 5:
+					time += 1*get_physics_process_delta_time()
+				if time > 5:
+					dano = 0
+					time = 0
+			
+			if Input.is_action_just_released("dash"):
+				dano = 0
+				time = 0
+				
+		
+	
+	
+	if Input.is_action_pressed("jump"):
+		if shift != 1:
+			$AnimatedSprite.play("jump")
+			
+	if Input.is_action_just_pressed("attack"):
 		if !is_on_floor():
+			attack = 1
 			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.stop()
 			$AnimatedSprite.play("airslash")
 			
 		
-		if is_on_floor() and eixo_horizontal == 0:
-			$ground_kick/CollisionShape2D.disabled = false
-			$AnimationPlayer.stop()
-			$AnimatedSprite.play("ground_kick")
-			yield($AnimatedSprite, "animation_finished")
-			$ground_kick/CollisionShape2D.disabled = true
+		if is_on_floor() and movement.x == 0:
+			dano = 1
+			$AnimationPlayer.stop(true)
+			$AnimatedSprite.rotation_degrees = 0
+			$AnimationPlayer.play("ground_kick")
+			yield($AnimationPlayer, "animation_finished")
+			dano = 0
 			attack = 0
+		
+			
+		
+		
+
+
+func _on_Node2D_life(amount):
+	life.set_current(life.current + 5)
+	pass # Replace with function body.
