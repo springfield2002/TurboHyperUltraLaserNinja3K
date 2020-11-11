@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Game_elements/Player/8bitlim.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/Ninja.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Background/health.gd" type="Script" id=3]
+[ext_resource path="res://Instances/huds/health.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
