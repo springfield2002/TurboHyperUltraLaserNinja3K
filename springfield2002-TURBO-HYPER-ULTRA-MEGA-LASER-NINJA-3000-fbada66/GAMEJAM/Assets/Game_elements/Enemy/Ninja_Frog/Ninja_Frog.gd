@@ -48,4 +48,4 @@ func _on_Area2DRight_body_entered(body):
 	if body.name == "speedwagon":
 		$AnimatedSprite.flip_h = true
 func dead():
-	$AnimatedSprite.play("")
+	$AnimatedSprite.play("death")
