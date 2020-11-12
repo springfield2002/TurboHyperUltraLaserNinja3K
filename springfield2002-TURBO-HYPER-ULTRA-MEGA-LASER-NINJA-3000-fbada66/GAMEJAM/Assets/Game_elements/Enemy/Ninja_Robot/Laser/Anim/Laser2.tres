@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Laser/spr_bullet_strip02.png" type="Texture" id=1]
+
+[resource]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 208, 21, 58, 27 )

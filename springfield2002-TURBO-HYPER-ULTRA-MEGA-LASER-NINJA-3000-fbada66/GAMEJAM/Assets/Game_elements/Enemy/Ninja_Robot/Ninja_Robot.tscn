@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Idle/Idle2.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Idle/Idle1.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Idle/Idle0.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Idle/Idle3.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Attack/Attack0.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Death/Death1.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Death/Death2.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Death/Death0.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Ninja_Robot.gd" type="Script" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Death",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 27.4745
+height = 20.8591
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 194.521, 49.2106 )
+
+[node name="Ninja_Robot" type="KinematicBody2D"]
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5.74331 )
+shape = SubResource( 2 )
+
+[node name="Area2DLeft" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLeft"]
+position = Vector2( -220, 0 )
+shape = SubResource( 3 )
+
+[node name="Area2DRight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2DRight"]
+position = Vector2( 220, 0 )
+shape = SubResource( 3 )
+
+[node name="Left" type="Position2D" parent="."]
+position = Vector2( -31, -5.258 )
+
+[node name="Right" type="Position2D" parent="."]
+position = Vector2( 31.024, -5.258 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="body_entered" from="Area2DLeft" to="." method="_on_Area2DLeft_body_entered"]
+[connection signal="body_exited" from="Area2DLeft" to="." method="_on_Area2DLeft_body_exited"]
+[connection signal="body_entered" from="Area2DRight" to="." method="_on_Area2DRight_body_entered"]
+[connection signal="body_exited" from="Area2DRight" to="." method="_on_Area2DRight_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
