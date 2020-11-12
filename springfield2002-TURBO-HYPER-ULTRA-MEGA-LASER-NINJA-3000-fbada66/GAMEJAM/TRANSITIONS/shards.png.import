@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shards.png-8bc13669914104c1c7572da69216a91f.stex"
+path="res://.import/shards.png-034978347fe6193149d7fd5660284228.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shards.png"
-dest_files=[ "res://.import/shards.png-8bc13669914104c1c7572da69216a91f.stex" ]
+source_file="res://TRANSITIONS/shards.png"
+dest_files=[ "res://.import/shards.png-034978347fe6193149d7fd5660284228.stex" ]
 
 [params]
 
