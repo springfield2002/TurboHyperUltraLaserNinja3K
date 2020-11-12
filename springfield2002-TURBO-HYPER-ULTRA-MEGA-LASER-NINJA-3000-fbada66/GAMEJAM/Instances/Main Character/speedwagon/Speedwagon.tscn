@@ -317,6 +317,7 @@ tracks/4/keys = {
 }
 
 [node name="speedwagon" type="KinematicBody2D"]
+position = Vector2( 0, -3.36359 )
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 11 )
 

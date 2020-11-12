@@ -134,13 +134,17 @@ func update_animations():
 				yield($AnimationPlayer, "animation_finished")
 				dano = 0
 		
-		
-	
 
+func _exit_scene():
+	$CanvasLayer/AnimationPlayer.play("transition")	
+	yield($CanvasLayer/AnimationPlayer, "animation_finished")
+	pass
 
-
-
-
+func _enter_scene():
+	$CanvasLayer/AnimationPlayer.play_backwards("transition")	
+	yield($CanvasLayer/AnimationPlayer, "animation_finished")
+	pass		
+ 
 func _on_Node2D_life(amount):
 	life.set_current(life.current + 5)
 	pass # Replace with function body.

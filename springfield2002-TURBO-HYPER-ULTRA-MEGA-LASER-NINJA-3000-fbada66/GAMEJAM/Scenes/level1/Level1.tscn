@@ -283,7 +283,7 @@ shape = SubResource( 12 )
 [node name="speedwagon" parent="." groups=[
 "player",
 ] instance=ExtResource( 7 )]
-position = Vector2( 79.7325, 496.179 )
+position = Vector2( 86.3737, 511.021 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="LVL2" type="Area2D" parent="."]
