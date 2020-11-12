@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Idle/Idle0.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Idle/Idle1.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Range Attack/Attack1.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Range Attack/Attack0.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Ninja_Frog.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Range Attack/Attack4.tres" type="Texture" id=10]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Range Attack/Attack3.tres" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ null, null, null, null ],
+"loop": true,
+"name": "Walk",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ null, null, null, null, null, null ],
+"loop": true,
+"name": "Death",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 250.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 20.0
+
+[node name="Ninja_Frog" type="KinematicBody2D"]
+position = Vector2( 0.761353, 0.5 )
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1.94455, 0.26516 )
+scale = Vector2( 1, 0.823223 )
+frames = SubResource( 1 )
+animation = "Idle"
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Area2DLeft" type="Area2D" parent="."]
+visible = false
+
+[node name="Left" type="CollisionShape2D" parent="Area2DLeft"]
+position = Vector2( -250, 0 )
+shape = SubResource( 3 )
+
+[node name="Area2DRight" type="Area2D" parent="."]
+visible = false
+
+[node name="Right" type="CollisionShape2D" parent="Area2DRight"]
+position = Vector2( 249.698, 0 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area2DLeft" to="." method="_on_Area2DLeft_body_entered"]
+[connection signal="body_entered" from="Area2DRight" to="." method="_on_Area2DRight_body_entered"]
