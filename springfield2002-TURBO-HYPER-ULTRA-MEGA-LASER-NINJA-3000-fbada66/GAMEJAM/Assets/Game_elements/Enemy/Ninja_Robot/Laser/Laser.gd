@@ -11,3 +11,9 @@ func _physics_process(delta):
 	velocity.x = speed * delta * direction
 	translate(velocity)
 	pass # Replace with function body.
+
+
+func _on_Laser_body_entered(body):
+	if body.name == "UltraNinja":
+		body.hit()
+	pass # Replace with function body.
