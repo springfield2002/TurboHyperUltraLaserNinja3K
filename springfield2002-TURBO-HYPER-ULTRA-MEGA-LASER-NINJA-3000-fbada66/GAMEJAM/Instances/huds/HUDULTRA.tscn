@@ -1,9 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/8bitlim.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/face.tres" type="Texture" id=2]
 [ext_resource path="res://Instances/huds/health.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Game_elements/WhatsApp Image 2020-11-11 at 9.14.02 PM.jpeg" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/text box.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -22,7 +28,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/cutoff = 1.0
+shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.365
 shader_param/mask = ExtResource( 4 )
 
@@ -41,23 +47,110 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="DynamicFont" id=4]
-size = 20
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="Animation" id=4]
+resource_name = "transitionLVL"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Popup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Popup/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "L", "LE", "LEV", "LEVE", "LEVEL", "LEVEL
+C", "LEVEL
+CO", "LEVEL
+COM", "LEVEL
+COMP", "LEVEL
+COMPL", "LEVEL
+COMPLE", "LEVEL
+COMPLET", "LEVEL
+COMPLETE", "LEVEL
+COMPLETED" ]
+}
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.976471, 0.0352941, 0.0352941, 1 )
 border_color = Color( 1, 0.984314, 0.984314, 1 )
 border_blend = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 0.6 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.647059, 0.647059, 0.647059, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 3 )
 max_amount = 9
+
+[node name="Popup" type="Popup" parent="."]
+margin_left = 301.374
+margin_top = 219.514
+margin_right = 694.374
+margin_bottom = 416.514
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="TextureRect" type="TextureRect" parent="Popup"]
+anchor_left = 0.5
+anchor_top = 0.508
+anchor_right = 0.5
+anchor_bottom = 0.508
+margin_left = -140.211
+margin_top = -123.683
+margin_right = 159.789
+margin_bottom = 112.317
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="Popup"]
+margin_left = 42.2821
+margin_top = 67.6552
+margin_right = 372.282
+margin_bottom = 114.655
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "LEVEL
+COMPLETED"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
@@ -70,6 +163,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
 anims/transition = SubResource( 3 )
+anims/transitionLVL = SubResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 1.81079
@@ -83,15 +177,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 84.0
-margin_top = 31.0
-margin_right = 414.0
-margin_bottom = 53.0
-custom_fonts/font = SubResource( 4 )
+margin_left = 56.2886
+margin_top = 32.9494
+margin_right = 386.289
+margin_bottom = 79.9494
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "HYPER ULTRA NINJA TURBO LASER 3000"
+text = "HYPER ULTRA LASER NINJA 3000
+"
 align = 1
 valign = 1
 __meta__ = {
@@ -106,8 +201,8 @@ margin_left = 86.0
 margin_top = 56.0
 margin_right = 355.0
 margin_bottom = 82.0
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 6 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 value = 50.0
 percent_visible = false
