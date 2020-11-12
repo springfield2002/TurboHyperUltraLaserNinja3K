@@ -240,3 +240,6 @@ func _enter_scene():
 func _on_Node2D_life(amount):
 	life.set_current(life.current + amount)
 	pass # Replace with function body.
+
+func hit(value):
+	life.set_current(life.current - value)
