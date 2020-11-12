@@ -15,36 +15,12 @@ var spin = 0
 var shift = 0
 var time = 0
 func _ready():
-	Socket.connect("cima", self, "jump")
-	Socket.connect("esquerda", self, "_on_esquerda")
-	Socket.connect("direita", self, "_on_direita")
+	
 	Socket.connect("ataque", self, "_on_ataque")
-	Socket.connect("parado", self, "_stop")
-	Socket.connect("sprint", self, "_dash")
+
 	pass
 	
-func jump():
-	if is_on_floor():
-		movement.y = -jump
-		second_jump  -= 1
-	if !is_on_floor() and second_jump > 0:
-		movement.y = -jump
-		second_jump  -= 1
-	if shift != 1:
-			$AnimatedSprite.play("jump")	
 
-func _stop():
-	if dano != 1:
-		eixo_horizontal = 0
-
-func _on_esquerda():
-	if dano != 1:
-		eixo_horizontal = -1
-
-func _on_direita():
-	if dano != 1:
-		eixo_horizontal = 1
-		
 func _on_ataque():
 	if !is_on_floor():
 			attack = 1
@@ -78,7 +54,9 @@ func _dash():
 			
 					
 func _physics_process(delta):
-	movement.x = eixo_horizontal * speed
+	if dano != 1:
+		eixo_horizontal = Input.get_action_strength("right") - Input.get_action_strength("left") 
+		movement.x = eixo_horizontal * speed
 	if !is_on_floor():
 		movement.y += gravity
 		if attack == 1:
@@ -159,7 +137,7 @@ func update_animations():
 				time = 0
 				
 	
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		if shift != 1:
 			$AnimatedSprite.play("jump")
 			
@@ -173,6 +151,7 @@ func update_animations():
 		
 		if is_on_floor() and movement.x == 0:
 			dano = 1
+			Socket.write_text("ataque\n")
 			$AnimationPlayer.stop(true)
 			$AnimatedSprite.rotation_degrees = 0
 			$AnimationPlayer.play("ground_kick")

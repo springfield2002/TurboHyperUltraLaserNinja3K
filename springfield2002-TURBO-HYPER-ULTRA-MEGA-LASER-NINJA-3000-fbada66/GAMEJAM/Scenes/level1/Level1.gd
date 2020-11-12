@@ -12,7 +12,7 @@ func _ready():
 	$speedwagon/Camera2D.limit_left = 0
 	$speedwagon/Camera2D.limit_top = 0
 	$speedwagon/Camera2D.limit_right = 1024
-	$speedwagon/Camera2D.limit_bottom = 620
+	$speedwagon/Camera2D.limit_bottom = 600
 		
 	pass # Replace with function body.
 
