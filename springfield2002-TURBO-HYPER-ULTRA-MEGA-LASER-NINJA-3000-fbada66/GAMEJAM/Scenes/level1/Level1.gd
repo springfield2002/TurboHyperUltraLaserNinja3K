@@ -8,7 +8,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Socket.connect_to_server()
 	$speedwagon/Camera2D.limit_left = 0
+	$speedwagon/Camera2D.limit_top = 0
 	$speedwagon/Camera2D.limit_right = 1024
 	$speedwagon/Camera2D.limit_bottom = 620
 		
@@ -34,8 +36,9 @@ func _on_Area2D_body_entered(body):
 	pass # Replace with function body.
 
 
-func _on_LVL2_body_entered(body):
+
+func _on_Area2D2_body_entered(body):
 	if body.is_in_group("player"):
 		body._exit_scene()
-		get_tree().change_scene("res://Scenes/Level2.tscn")
-	pass # Replace with function body.
+		get_tree().change_scene("res://Scenes/level2/Level2.tscn")
+	

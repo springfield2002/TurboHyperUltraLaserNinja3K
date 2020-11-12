@@ -8,7 +8,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("Node2D")._enter_scene()
+	Socket.connect_to_server()
+	get_node("ultraNinja")._enter_scene()
 	$ultraNinja/Camera2D.limit_bottom = 600
 	$ultraNinja/Camera2D.limit_left = 0
 	$ultraNinja/Camera2D.limit_right = 1344

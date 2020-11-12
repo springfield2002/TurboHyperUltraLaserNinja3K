@@ -6,7 +6,6 @@
 [ext_resource path="res://Instances/huds/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Instances/Collectibles/up_cola.tscn" type="PackedScene" id=5]
 
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
@@ -21,6 +20,6 @@
 position = Vector2( 104, 464 )
 
 [node name="Node2D4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 247.623, 463.532 )
+position = Vector2( 249.405, 463.532 )
 [connection signal="area_entered" from="Node2D4" to="CanvasLayer" method="_on_Node2D4_area_entered"]
 [connection signal="life" from="Node2D4" to="Node2D3" method="_on_Node2D_life"]

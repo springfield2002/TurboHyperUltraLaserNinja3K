@@ -6,9 +6,12 @@ var connected = false
 
 var text = ""
 
-signal sobe(player)
-signal desce(player)
-signal potenciometro(player, value)
+signal cima()
+signal esquerda()
+signal direita()
+signal ataque()
+signal parado()
+signal sprint()
 
 func _ready():
 	client = StreamPeerTCP.new()
@@ -66,6 +69,8 @@ func on_text_received(text): #"1 Sobe"
 		emit_signal("ataque")
 	elif command_array[0] == "parado":
 		emit_signal("parado")
+	elif command_array[0] == "sprint":
+		emit_signal("sprint")
 
 func write_text(text):
 	if connected and client.is_connected_to_host():
