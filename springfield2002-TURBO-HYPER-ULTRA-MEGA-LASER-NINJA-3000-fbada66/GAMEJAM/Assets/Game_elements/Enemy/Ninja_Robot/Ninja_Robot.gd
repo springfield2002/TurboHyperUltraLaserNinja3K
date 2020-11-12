@@ -15,7 +15,7 @@ func _ready():
 	$AnimatedSprite.play("Idle")
 	
 func _on_Area2DLeft_body_entered(body):
-	if body.name == "Node2D3"
+	if body.name == "Node2D3":
 		player = body
 		$AnimatedSprite.play("Attack")
 		$AnimatedSprite.flip_h = true
