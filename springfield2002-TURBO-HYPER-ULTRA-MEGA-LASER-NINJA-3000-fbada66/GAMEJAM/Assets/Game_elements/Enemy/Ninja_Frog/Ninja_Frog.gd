@@ -19,7 +19,7 @@ func _physics_process(delta):
 		move = Vector2.ZERO
 	
 func _on_Area2D_body_entered(body):
-	if body.name == "Node2D3":
+	if body.name == "speedwagon":
 		player = body
 	
 func _on_Area2D_body_exited(body):
@@ -41,10 +41,10 @@ func _on_Timer_timeout():
 		fire()
 
 func _on_Area2DLeft_body_entered(body):
-	if body.name == "Node2D3":
+	if body.name == "speedwagon":
 		$AnimatedSprite.flip_h = false
 
 func _on_Area2DRight_body_entered(body):
-	if body.name == "Node2D3":
+	if body.name == "speedwagon":
 		$AnimatedSprite.flip_h = true
 

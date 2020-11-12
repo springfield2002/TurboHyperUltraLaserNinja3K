@@ -15,20 +15,20 @@ animations = [ {
 "name": "Attack",
 "speed": 5.0
 }, {
-"frames": [ null, null, null, null ],
+"frames": [ null, null, null, null, null, null ],
 "loop": true,
-"name": "Walk",
-"speed": 7.0
+"name": "Death",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ null, null, null, null, null, null ],
+"frames": [ null, null, null, null ],
 "loop": true,
-"name": "Death",
-"speed": 5.0
+"name": "Walk",
+"speed": 7.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

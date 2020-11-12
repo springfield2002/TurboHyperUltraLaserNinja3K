@@ -16,3 +16,8 @@ func _physics_process(delta):
 	position += move
 
 
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+	pass # Replace with function body.
