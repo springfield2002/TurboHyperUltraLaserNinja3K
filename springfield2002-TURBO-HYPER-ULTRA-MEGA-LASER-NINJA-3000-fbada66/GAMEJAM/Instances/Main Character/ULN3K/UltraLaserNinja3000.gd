@@ -27,20 +27,7 @@ func _ready():
 	pass
 	
 	
-#func _duck():	
-	movement.x = 0
-	dano = 1
-	if down == 1:
-		$AnimationPlayer.play("abaixar")
-		yield($AnimationPlayer,"animation_finished")
-		down = 0
 
-#func _unduck():
-	$AnimationPlayer.play_backwards("abaixar")	
-	yield($AnimationPlayer,"animation_finished")
-	dano = 0
-	down = 1
-		
 func _shoot():
 	movement.x = 0
 	dano = 1
@@ -109,7 +96,9 @@ func _physics_process(delta):
 		movement.y += gravity
 		if movement.y > 0 && attack == 0:
 			$AnimationPlayer.stop()
-			$AnimatedSprite.play("fall")
+			$AnimatedSprite.play("jump")
+	
+	
 	
 	if Input.is_action_just_pressed("jump"):	
 		if is_on_floor():
@@ -243,3 +232,8 @@ func _on_Node2D_life(amount):
 
 func hit(value):
 	life.set_current(life.current - value)
+
+
+func _on_airslash_body_entered(body):
+	body.hit()
+	pass # Replace with function body.

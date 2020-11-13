@@ -13,6 +13,7 @@ func _ready():
 	$speedwagon/Camera2D.limit_right = 1984
 	$speedwagon/Camera2D.limit_left = 32
 	$speedwagon/Camera2D.limit_top = 0
+	
 	pass # Replace with function body.
 
 
@@ -31,8 +32,7 @@ func _on_Area2D_body_entered(body):
 
 func _on_Area2D2_body_entered(body):
 	if body.is_in_group("player"):
-		$speedwagon/CanvasLayer/AnimationPlayer.play("transitionLVL")
-		yield($speedwagon/CanvasLayer/AnimationPlayer, "animation_finished")		
+		body._exit_scene()		
 		get_tree().change_scene("res://Scenes/CUT3VIU/Simple Dialog Box/CUT3.tscn")
 	pass # Replace with function body.
 
@@ -40,7 +40,7 @@ func _on_Area2D2_body_entered(body):
 func _on_Node2D_change():
 	if change == 0:
 		var player = ultraNinja.instance()
-		player.position = get_global_position()
+		player.position = $Position2D.get_global_position()
 		self.remove_child($speedwagon)
 		self.add_child(player)
 		change = 1

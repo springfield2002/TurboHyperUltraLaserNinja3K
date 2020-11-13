@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CUT4.png-4c6aad45c93d3ed2a9726eb581976054.stex"
+path="res://.import/CUT4.png-ed2862d3ef502b822169aa71d6a756fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ESTOJOIRMAO/CUT4.png"
-dest_files=[ "res://.import/CUT4.png-4c6aad45c93d3ed2a9726eb581976054.stex" ]
+source_file="res://Scenes/CUTSCENE4AMOR/ESTOJOIRMAO/CUT4.png"
+dest_files=[ "res://.import/CUT4.png-ed2862d3ef502b822169aa71d6a756fe.stex" ]
 
 [params]
 

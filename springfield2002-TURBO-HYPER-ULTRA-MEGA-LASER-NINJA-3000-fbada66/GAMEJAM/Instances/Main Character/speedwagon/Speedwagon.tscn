@@ -27,29 +27,24 @@ animations = [ {
 "name": "idle",
 "speed": 3.5
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "jump",
-"speed": 10.0
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "duck",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "hit",
 "speed": 2.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "ground_kick",
-"speed": 2.0
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": false,
 "name": "airslash",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 8 ) ],
@@ -57,9 +52,14 @@ animations = [ {
 "name": "walk",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
-"name": "duck",
+"name": "ground_kick",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -147,7 +147,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 9 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "flash"
 length = 0.2
 loop = true
@@ -164,8 +164,7 @@ tracks/0/keys = {
 "values": [ false, true, true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "ground_kick"
+[sub_resource type="Animation" id=7]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -205,7 +204,7 @@ tracks/2/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -269,7 +268,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -364,15 +363,15 @@ disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.8, 0.8 )
 smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/duck = SubResource( 5 )
-anims/flash = SubResource( 9 )
-anims/ground_kick = SubResource( 6 )
-anims/idle = SubResource( 7 )
-anims/walking = SubResource( 8 )
+anims/flash = SubResource( 6 )
+anims/ground_kick = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/walking = SubResource( 9 )
 
 [node name="CanvasLayer" parent="." groups=[
 "player",

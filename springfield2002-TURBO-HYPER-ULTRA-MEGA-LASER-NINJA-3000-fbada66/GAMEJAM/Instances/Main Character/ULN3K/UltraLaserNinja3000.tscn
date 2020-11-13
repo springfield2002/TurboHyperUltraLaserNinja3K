@@ -45,21 +45,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ],
-"loop": false,
-"name": "airslash",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "walk",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 36 ), ExtResource( 35 ), ExtResource( 34 ) ],
 "loop": false,
 "name": "duck",
@@ -99,6 +84,21 @@ animations = [ {
 "loop": false,
 "name": "str atk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ],
+"loop": false,
+"name": "airslash",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -931,3 +931,4 @@ position = Vector2( 24.3225, -62.6732 )
 current = true
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 37 )]
+[connection signal="body_entered" from="airslash" to="." method="_on_airslash_body_entered"]

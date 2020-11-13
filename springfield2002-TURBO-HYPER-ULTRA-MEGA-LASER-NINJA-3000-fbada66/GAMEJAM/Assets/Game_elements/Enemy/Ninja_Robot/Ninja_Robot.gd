@@ -11,11 +11,12 @@ const laser = preload("res://Assets/Game_elements/Enemy/Ninja_Robot/Laser/Laser.
 export var gravity = 100
 var touch = 0
 var direction = 0
+onready var life = 3
 func _ready():
 	$AnimatedSprite.play("Idle")
 	
 func _on_Area2DLeft_body_entered(body):
-	if body.name == "Node2D3":
+	if body.name == "ultraNinja":
 		player = body
 		$AnimatedSprite.play("Attack")
 		$AnimatedSprite.flip_h = true
@@ -28,7 +29,7 @@ func _on_Area2DLeft_body_exited(body):
 		
 		
 func _on_Area2DRight_body_entered(body):
-	if body != self:
+	if body.name == "ultraNinja":
 		player = body
 		$AnimatedSprite.play("Attack")
 		$AnimatedSprite.flip_h = false
@@ -59,8 +60,18 @@ func _on_Timer_timeout():
 	if player != null:
 		fire()
 
+func hit():
+	life -= 1
+	if life == 0:
+		_dead()
 
-
+func _dead():
+	$AnimatedSprite.play("Death")
+	yield($AnimatedSprite,"animation_finished")
+	queue_free()
+	
+	
+	
 	
 
 
