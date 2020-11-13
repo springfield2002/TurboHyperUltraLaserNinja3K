@@ -337,10 +337,6 @@ tracks/4/keys = {
 position = Vector2( 0, -3.36359 )
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 11 )
-movement = null
-speed = null
-jump = null
-gravity = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )

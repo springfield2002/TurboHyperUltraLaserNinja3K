@@ -281,6 +281,7 @@ anims/transition = SubResource( 11 )
 anims/transitionLVL = SubResource( 4 )
 
 [node name="Control" parent="." instance=ExtResource( 6 )]
+pause_mode = 2
 visible = false
 [connection signal="changed" from="." to="ProgressBar" method="set_value"]
 [connection signal="depleted" from="." to="." method="_on_CanvasLayer_depleted"]

@@ -173,10 +173,13 @@ func _on_Node2D_life(amount):
 	pass # Replace with function body.
 
 func hit(value):
+	$AnimationPlayer.stop()
+	movement.x = 0
 	$AnimatedSprite.play("hit")
 	life.set_current(life.current - value)
 	$AnimationPlayer.play("flash")
 	$invincible.start()
 func _on_invincible_timeout():
 	$AnimationPlayer.stop()
-		pass # Replace with function body.
+	$CollisionShape2D.visible = true
+	pass # Replace with function body.

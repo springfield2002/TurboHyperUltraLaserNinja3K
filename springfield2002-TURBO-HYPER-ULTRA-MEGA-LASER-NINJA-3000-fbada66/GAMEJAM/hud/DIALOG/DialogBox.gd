@@ -1,9 +1,10 @@
 extends Control
 
 var dialog = [
-	'Hello there, this tutorial is awesome.',
-	'If you like what you see, you can click the subscribe button',
-	'and if you don\'t you shoud do it anyway!'
+	'UMA GRANDE CATÁSTROFE ESTÁ PARA ASSOLAR A TERRA',
+	'VINDO DO ESPAÇO, UMA CALAMIDADE SE PREPARA PARA ABALAR A TERRA',
+	'E SÓ O NOSSO HERÓI PODERÁ ACABAR COM ESSA AMEAÇA',
+	'                                  SONIC LASER SPEEDWAGON'
 ]
 
 var dialog_index = 0
@@ -28,7 +29,7 @@ func load_dialog():
 		)
 		$Tween.start()
 	else:
-		queue_free()
+		get_tree().change_scene("res://Scenes/MENU.tscn")
 	dialog_index += 1
 
 

@@ -37,5 +37,8 @@ func _initialize():
 
 
 func _on_CanvasLayer_depleted():
+	
 	$Control/AnimationPlayer.play("death")
+	yield($Control/AnimationPlayer, "animation_finished")
+	get_tree().paused = true
 	pass # Replace with function body.
