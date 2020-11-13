@@ -26,4 +26,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_shuriken_body_entered(body):
 	if body.is_in_group("player"):
 		body.hit(1);
+		queue_free()
 	pass # Replace with function body.

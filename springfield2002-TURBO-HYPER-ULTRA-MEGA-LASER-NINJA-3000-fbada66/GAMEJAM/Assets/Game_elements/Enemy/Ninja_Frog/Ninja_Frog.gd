@@ -47,5 +47,8 @@ func _on_Area2DLeft_body_entered(body):
 func _on_Area2DRight_body_entered(body):
 	if body.name == "speedwagon":
 		$AnimatedSprite.flip_h = true
+
 func dead():
 	$AnimatedSprite.play("death")
+	yield($AnimatedSprite,"animation_finished")
+	queue_free()

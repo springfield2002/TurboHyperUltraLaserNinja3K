@@ -181,5 +181,17 @@ func hit(value):
 	$invincible.start()
 func _on_invincible_timeout():
 	$AnimationPlayer.stop()
-	$CollisionShape2D.visible = true
+	self.visible = true
+	pass # Replace with function body.
+
+
+func _on_AirSlash_body_entered(body):
+	if body.is_in_group("frog"):
+		body.dead()
+	pass # Replace with function body.
+
+
+func _on_ground_kick_body_entered(body):
+	if body.is_in_group("frog"):
+		body.dead()
 	pass # Replace with function body.

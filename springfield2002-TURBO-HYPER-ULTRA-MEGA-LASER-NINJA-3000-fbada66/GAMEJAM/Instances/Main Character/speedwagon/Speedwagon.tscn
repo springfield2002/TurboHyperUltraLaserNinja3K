@@ -379,4 +379,6 @@ anims/walking = SubResource( 8 )
 ] instance=ExtResource( 19 )]
 
 [node name="invincible" type="Timer" parent="."]
+[connection signal="body_entered" from="AirSlash" to="." method="_on_AirSlash_body_entered"]
+[connection signal="body_entered" from="ground_kick" to="." method="_on_ground_kick_body_entered"]
 [connection signal="timeout" from="invincible" to="." method="_on_invincible_timeout"]

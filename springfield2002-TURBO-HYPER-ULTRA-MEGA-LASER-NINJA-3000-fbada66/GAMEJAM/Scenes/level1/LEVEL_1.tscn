@@ -327,7 +327,7 @@ one_way_collision = true
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2( 4232.36, 277.579 )
+position = Vector2( 4229.36, 282.232 )
 shape = SubResource( 16 )
 
 [node name="Ninja_Frog" parent="." instance=ExtResource( 9 )]
@@ -347,5 +347,21 @@ position = Vector2( 796.013, 328.971 )
 
 [node name="Ninja_Frog6" parent="." instance=ExtResource( 9 )]
 position = Vector2( 794.515, 424.863 )
+
+[node name="Ninja_Frog7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1836.35, 454.312 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Ninja_Frog8" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2267.87, 616.129 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Ninja_Frog9" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2528.39, 619.126 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Ninja_Frog10" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2935.93, 421.349 )
+scale = Vector2( 0.8, 0.8 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]

@@ -46,7 +46,9 @@ radius = 250.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 20.0
 
-[node name="Ninja_Frog" type="KinematicBody2D"]
+[node name="Ninja_Frog" type="KinematicBody2D" groups=[
+"frog",
+]]
 position = Vector2( 0.761353, 0.5 )
 script = ExtResource( 9 )
 
