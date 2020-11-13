@@ -17,3 +17,4 @@ texture = ExtResource( 1 )
 position = Vector2( -0.132431, 0.397297 )
 rotation = 1.5708
 shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_Laser_body_entered"]

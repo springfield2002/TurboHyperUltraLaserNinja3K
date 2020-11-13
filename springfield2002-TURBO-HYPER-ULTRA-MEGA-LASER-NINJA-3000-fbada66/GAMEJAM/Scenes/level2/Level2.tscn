@@ -425,15 +425,34 @@ shape = SubResource( 15 )
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2( 4308.54, 1907.18 )
+position = Vector2( 4300.01, 1902.42 )
 shape = SubResource( 16 )
+disabled = true
 
-[node name="Ninja_Robot" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4140.78, 2198.93 )
+[node name="Ninja_Robot" parent="." groups=[
+"enermy",
+"robot",
+] instance=ExtResource( 8 )]
+position = Vector2( 4093.14, 2202.29 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Ninja_Robot2" parent="." groups=[
+"enermy",
+"robot",
+] instance=ExtResource( 8 )]
+position = Vector2( 1186.79, 881.289 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Ninja_Robot3" parent="." groups=[
+"enermy",
+"robot",
+] instance=ExtResource( 8 )]
+position = Vector2( 2738, 2203.65 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="speedwagon" parent="." groups=[
 "player",
+"speedwagon",
 ] instance=ExtResource( 6 )]
 position = Vector2( 407.957, 776.124 )
 
@@ -445,4 +464,5 @@ scale = Vector2( 1.5, 1.5 )
 position = Vector2( 1219.83, 2214.66 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="dead" from="Ninja_Robot" to="." method="_on_Ninja_Robot_dead"]
 [connection signal="change" from="Node2D" to="." method="_on_Node2D_change"]

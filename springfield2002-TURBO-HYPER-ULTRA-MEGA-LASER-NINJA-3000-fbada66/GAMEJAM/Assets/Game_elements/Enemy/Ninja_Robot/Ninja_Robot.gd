@@ -12,11 +12,12 @@ export var gravity = 100
 var touch = 0
 var direction = 0
 onready var life = 3
+signal dead
 func _ready():
 	$AnimatedSprite.play("Idle")
 	
 func _on_Area2DLeft_body_entered(body):
-	if body.name == "ultraNinja":
+	if body.is_in_group("player"):
 		player = body
 		$AnimatedSprite.play("Attack")
 		$AnimatedSprite.flip_h = true
@@ -29,7 +30,7 @@ func _on_Area2DLeft_body_exited(body):
 		
 		
 func _on_Area2DRight_body_entered(body):
-	if body.name == "ultraNinja":
+	if body.is_in_group("player"):
 		player = body
 		$AnimatedSprite.play("Attack")
 		$AnimatedSprite.flip_h = false
@@ -60,15 +61,19 @@ func _on_Timer_timeout():
 	if player != null:
 		fire()
 
-func hit():
-	life -= 1
-	if life == 0:
+func hit(damage):
+	life -= damage
+	if life <= 0:
 		_dead()
 
 func _dead():
+	$Area2DLeft/CollisionShape2D.disabled = true
+	$Area2DRight/CollisionShape2D2.disabled = true
 	$AnimatedSprite.play("Death")
 	yield($AnimatedSprite,"animation_finished")
+	emit_signal("dead")
 	queue_free()
+	
 	
 	
 	

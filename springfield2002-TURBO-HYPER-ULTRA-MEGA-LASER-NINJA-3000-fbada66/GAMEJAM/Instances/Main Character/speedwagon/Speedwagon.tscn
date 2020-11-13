@@ -27,11 +27,6 @@ animations = [ {
 "name": "idle",
 "speed": 3.5
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": false,
-"name": "duck",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "hit",
@@ -51,6 +46,11 @@ animations = [ {
 "loop": true,
 "name": "walk",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "duck",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
@@ -378,6 +378,7 @@ anims/walking = SubResource( 9 )
 ] instance=ExtResource( 19 )]
 
 [node name="invincible" type="Timer" parent="."]
+wait_time = 0.5
 [connection signal="body_entered" from="AirSlash" to="." method="_on_AirSlash_body_entered"]
 [connection signal="body_entered" from="ground_kick" to="." method="_on_ground_kick_body_entered"]
 [connection signal="timeout" from="invincible" to="." method="_on_invincible_timeout"]

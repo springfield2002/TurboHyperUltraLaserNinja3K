@@ -31,10 +31,9 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Area2D2_body_entered(body):
-	if body.is_in_group("player"):
 		body._exit_scene()		
 		get_tree().change_scene("res://Scenes/CUT3VIU/Simple Dialog Box/CUT3.tscn")
-	pass # Replace with function body.
+		pass # Replace with function body.
 
 
 func _on_Node2D_change():
@@ -47,3 +46,8 @@ func _on_Node2D_change():
 		
 		
 	pass # Replace with functionbody.
+
+
+func _on_Ninja_Robot_dead():
+	$Area2D2/CollisionShape2D.disabled = false
+	pass # Replace with function body.

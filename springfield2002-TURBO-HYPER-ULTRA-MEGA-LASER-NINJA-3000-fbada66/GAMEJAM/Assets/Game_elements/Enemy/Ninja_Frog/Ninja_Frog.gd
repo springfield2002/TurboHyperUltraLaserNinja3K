@@ -49,6 +49,8 @@ func _on_Area2DRight_body_entered(body):
 		$AnimatedSprite.flip_h = true
 
 func dead():
+	$Area2DLeft/Left.disabled = true
+	$Area2DRight/Right.disabled = true
 	$AnimatedSprite.play("death")
 	yield($AnimatedSprite,"animation_finished")
 	queue_free()

@@ -5,16 +5,14 @@ signal change
 var dialog = [
 	'VOCÊ ESTÁ PASSANDO POR MAUS BOCADOS, AMIGO',
 	'EU PODIA TE DAR UM DOLLYNHO PRA MELHORAR',
-	'MAS NÃO SERÁ SUFICIENTE',
-	'                                  VAMOS DAR UMA TUNADA'
+	'MAS NÃO SERÁ SUFICIENTE                 ',
+	'          VAMOS DAR UMA TUNADA          '
 ]
 
 var dialog_index = 0
 var finished = false
 
-func _ready():
-	load_dialog()
-
+	
 func _process(delta):
 	$Sprite.visible = finished
 	if self.visible == true:
@@ -35,13 +33,13 @@ func load_dialog():
 		emit_signal("change")
 	dialog_index += 1
 
-
 func _on_Tween_tween_completed(object, key):
 	finished = true
 
 
 
 func _on_Area2D_body_entered(body):
-	if body.name == "speedwagon":
+	if body.is_in_group("speedwagon"):
 		self.visible = true
+		load_dialog()
 		pass # Replace with function body.

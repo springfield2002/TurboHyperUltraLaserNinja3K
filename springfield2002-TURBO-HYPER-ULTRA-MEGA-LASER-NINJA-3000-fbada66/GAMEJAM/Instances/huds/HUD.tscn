@@ -7,11 +7,11 @@
 [ext_resource path="res://Assets/Game_elements/WhatsApp Image 2020-11-11 at 9.14.02 PM.jpeg" type="Texture" id=5]
 [ext_resource path="res://Scenes/deathScene.tscn" type="PackedScene" id=6]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -26,26 +26,26 @@ void fragment()
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
-shader_param/cutoff = 0.0
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/cutoff = 1.0
 shader_param/smooth_size = 0.192
 shader_param/mask = ExtResource( 5 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 420, 120, 40, 33 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.976471, 0.0352941, 0.0352941, 1 )
 border_color = Color( 1, 0.984314, 0.984314, 1 )
 border_blend = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 0.6 )
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.647059, 0.647059, 0.647059, 1 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 resource_name = "LVLCOMPLETED"
 length = 3.0
 tracks/0/type = "value"
@@ -107,7 +107,7 @@ COMPLETE", "LEVEL
 COMPLETED" ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -121,8 +121,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "transitionLVL"
+[sub_resource type="Animation" id=9]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
@@ -208,12 +207,11 @@ margin_left = -102.269
 margin_top = -35.7823
 margin_right = 112.732
 margin_bottom = 11.2177
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "LEVEL
-COMPLETED"
+text = "L"
 align = 1
 valign = 1
 __meta__ = {
@@ -222,8 +220,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = SubResource( 7 )
+material = SubResource( 3 )
 margin_top = -1.0
 margin_right = 1024.0
 margin_bottom = 605.0
@@ -237,7 +234,7 @@ margin_left = 8.0
 margin_top = 22.0
 margin_right = 73.0
 margin_bottom = 81.0
-texture = SubResource( 8 )
+texture = SubResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -248,7 +245,7 @@ margin_left = 61.1367
 margin_top = 30.5747
 margin_right = 276.137
 margin_bottom = 52.5747
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -268,8 +265,8 @@ margin_left = 86.0
 margin_top = 56.0
 margin_right = 355.0
 margin_bottom = 82.0
-custom_styles/fg = SubResource( 9 )
-custom_styles/bg = SubResource( 10 )
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 value = 50.0
 percent_visible = false
@@ -278,9 +275,9 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/LVLCOMPLETED = SubResource( 12 )
-anims/transition = SubResource( 11 )
-anims/transitionLVL = SubResource( 4 )
+anims/LVLCOMPLETED = SubResource( 7 )
+anims/transition = SubResource( 8 )
+anims/transitionLVL = SubResource( 9 )
 
 [node name="Control" parent="." instance=ExtResource( 6 )]
 pause_mode = 2

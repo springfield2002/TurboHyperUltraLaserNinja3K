@@ -26,15 +26,15 @@ animations = [ {
 "name": "Death",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "Walk",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -57,7 +57,6 @@ position = Vector2( 1.94455, 0.26516 )
 scale = Vector2( 1, 0.823223 )
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]

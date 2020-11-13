@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/level1/Level1.gd" type="Script" id=1]
 [ext_resource path="res://Instances/Main Character/speedwagon/Speedwagon.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Background/Backgrounds/New_Planet_Vegeta.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Frog/Ninja_Frog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Instances/Collectibles/up_cola.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/The Great Ninja.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -278,7 +279,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1019.2, 277.579 )
+position = Vector2( 1023.84, 282.232 )
 shape = SubResource( 12 )
 
 [node name="speedwagon" parent="." groups=[
@@ -325,11 +326,12 @@ position = Vector2( 795.315, 261.9 )
 shape = SubResource( 15 )
 one_way_collision = true
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="end" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="end"]
 position = Vector2( 4229.36, 282.232 )
 shape = SubResource( 16 )
+disabled = true
 
 [node name="Ninja_Frog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 350.607, 225.174 )
@@ -341,7 +343,7 @@ position = Vector2( 357.489, 326.091 )
 position = Vector2( 357.489, 429.237 )
 
 [node name="Ninja_Frog4" parent="." instance=ExtResource( 9 )]
-position = Vector2( 790.02, 228.585 )
+position = Vector2( 790.02, 227 )
 
 [node name="Ninja_Frog5" parent="." instance=ExtResource( 9 )]
 position = Vector2( 796.013, 328.971 )
@@ -366,7 +368,13 @@ position = Vector2( 2935.93, 421.349 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Node2D" parent="." instance=ExtResource( 10 )]
-position = Vector2( 4161.85, 548.988 )
+position = Vector2( 3388.64, 388 )
+
+[node name="The Great Ninja" parent="." groups=[
+"fat",
+] instance=ExtResource( 11 )]
+position = Vector2( 3786.91, 530 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
 [connection signal="life" from="Node2D" to="speedwagon" method="_on_Node2D_life"]
+[connection signal="dead" from="The Great Ninja" to="." method="_on_The_Great_Ninja_dead"]

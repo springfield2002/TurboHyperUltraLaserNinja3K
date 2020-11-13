@@ -24,7 +24,6 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("player"):
-		body._exit_scene()
 		
 		body.position.x = 1228.78
 		body.position.y = 523.89
@@ -32,12 +31,12 @@ func _on_Area2D_body_entered(body):
 		$speedwagon/Camera2D.limit_left = 1152
 		$speedwagon/Camera2D.limit_right = 4256
 		$speedwagon/Camera2D.limit_bottom = 670
-		body._enter_scene()
+	
 	pass # Replace with function body.
 
 
 
-func _on_Area2D2_body_entered(body):
+func _on_end_body_entered(body):
 	if body.is_in_group("player"):
 		$speedwagon/CanvasLayer/AnimationPlayer.play("LVLCOMPLETED")
 		yield($speedwagon/CanvasLayer/AnimationPlayer,"animation_finished")
@@ -45,3 +44,8 @@ func _on_Area2D2_body_entered(body):
 	
 
 
+
+
+func _on_The_Great_Ninja_dead():
+	$end/CollisionShape2D.disabled = false
+	pass # Replace with function body.

@@ -21,3 +21,10 @@ func _physics_process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 	pass # Replace with function body.
+
+
+func _on_Node2D_body_entered(body):
+	if body.is_in_group("enermy"):
+		body.hit(1)
+		queue_free()
+	pass # Replace with function body.

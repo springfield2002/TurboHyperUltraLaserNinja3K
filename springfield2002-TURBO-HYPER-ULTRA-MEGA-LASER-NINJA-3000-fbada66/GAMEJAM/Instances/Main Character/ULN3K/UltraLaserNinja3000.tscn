@@ -45,46 +45,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 36 ), ExtResource( 35 ), ExtResource( 34 ) ],
-"loop": false,
-"name": "duck",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "basic_attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 29 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "damage",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 34 ) ],
-"loop": true,
-"name": "DUCKED",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "land",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 30 ) ],
-"loop": true,
-"name": "dash",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 25 ), ExtResource( 28 ), ExtResource( 31 ), ExtResource( 32 ) ],
-"loop": true,
-"name": "shoot",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ), ExtResource( 24 ), ExtResource( 33 ), ExtResource( 26 ), ExtResource( 22 ) ],
-"loop": false,
-"name": "str atk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "jump",
@@ -95,10 +55,55 @@ animations = [ {
 "name": "airslash",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 27 ), ExtResource( 24 ), ExtResource( 33 ), ExtResource( 26 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "str atk",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "walk",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "damage",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "basic_attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 36 ), ExtResource( 35 ), ExtResource( 34 ) ],
+"loop": false,
+"name": "duck",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 34 ) ],
+"loop": true,
+"name": "DUCKED",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 28 ), ExtResource( 31 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ) ],
+"loop": true,
+"name": "dash",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "land",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": false,
+"name": "defense",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -880,14 +885,13 @@ height = 69.0103
 [node name="ultraNinja" type="KinematicBody2D" groups=[
 "player",
 ]]
-scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 5.526, -7.937 )
 scale = Vector2( -1.5, 1.5 )
 frames = SubResource( 1 )
-animation = "duck"
+animation = "defense"
 offset = Vector2( 2, 0 )
 
 [node name="Body" type="CollisionShape2D" parent="."]

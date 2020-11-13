@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Fonts/GaramondPremrPro-Smbd.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://DialogBox.gd" type="Script" id=2]
-[ext_resource path="res://next-indicator.png" type="Texture" id=3]
-[ext_resource path="res://dialog-background.png" type="Texture" id=4]
-[ext_resource path="res://ESTOJOIRMAO/CUT4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/CUTSCENE/Fonts/GaramondPremrPro-Smbd.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/CUTSCENE4AMOR/DialogBoxLast.gd" type="Script" id=2]
+[ext_resource path="res://hud/DIALOG/next-indicator.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/CUT2/dialog-background.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/CUTSCENE4AMOR/ESTOJOIRMAO/CUT4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Player/RobotNinja/idle/GUNDAM_idle2.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/Game_elements/collectibles/up_cola.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -38,6 +40,30 @@ position = Vector2( 490.203, 217.095 )
 scale = Vector2( 2.9581, 3.49388 )
 texture = ExtResource( 5 )
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchor_right = 0.026
+margin_left = 381.0
+margin_top = 66.0
+margin_right = 632.376
+margin_bottom = 349.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+anchor_right = 0.026
+margin_left = 544.728
+margin_top = 115.0
+margin_right = 603.104
+margin_bottom = 202.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DialogBox" type="Control" parent="."]
 anchor_left = 0.483
 anchor_top = 1.0
@@ -59,6 +85,9 @@ anchor_bottom = 1.0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogBox"]
 anchor_right = 1.0
@@ -78,7 +107,7 @@ __meta__ = {
 
 [node name="next-indicator" type="Sprite" parent="DialogBox"]
 visible = false
-position = Vector2( 728.953, 135.984 )
+position = Vector2( 728.953, 135.862 )
 scale = Vector2( 0.541, 0.511 )
 texture = ExtResource( 3 )
 

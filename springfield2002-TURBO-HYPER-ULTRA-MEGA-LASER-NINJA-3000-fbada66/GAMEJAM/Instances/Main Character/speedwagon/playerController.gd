@@ -14,6 +14,7 @@ var eixo_horizontal = 0
 var spin = 0
 var shift = 0
 var time = 0
+var airspin = 0
 func _ready():
 	
 	Socket.connect("ataque", self, "_on_ataque")
@@ -23,19 +24,20 @@ func _ready():
 
 func _on_ataque():
 	if !is_on_floor():
+			airspin = 1
 			attack = 1
 			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.stop()
 			$AnimatedSprite.play("airslash")
-			$CollisionShape2D.disabled = true
 	if is_on_floor() and movement.x == 0:
-		dano = 1
-		$AnimationPlayer.stop(true)
-		$AnimatedSprite.rotation_degrees = 0
-		$AnimationPlayer.play("ground_kick")
-		yield($AnimationPlayer, "animation_finished")
-		dano = 0
-		attack = 0	
+			dano = 1
+			Socket.write_text("ataque\n")
+			$AnimationPlayer.stop(true)
+			$AnimatedSprite.rotation_degrees = 0
+			$AnimationPlayer.play("ground_kick")
+			yield($AnimationPlayer, "animation_finished")
+			dano = 0
+			attack = 0	
 
 func _dash():		
 	if abs(movement.x) > 0 and dano != 1 and shift != 1:
@@ -113,6 +115,7 @@ func update_animations():
 			$ground_kick/CollisionShape2D.position.x *= -1
 	
 	if is_on_floor():
+		airspin = 0
 		if abs(movement.x) == 0 and dano != 1:
 			$AnimationPlayer.play("idle")
 			shift = 0
@@ -145,6 +148,7 @@ func update_animations():
 			
 	if Input.is_action_just_pressed("attack"):
 		if !is_on_floor():
+			airspin = 1
 			attack = 1
 			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.stop()
@@ -175,26 +179,47 @@ func _on_Node2D_life(amount):
 	pass # Replace with function body.
 
 func hit(value):
-	spin = 0
-	$AnimationPlayer.stop()
-	movement.x = 0
-	$AnimatedSprite.play("hit")
-	life.set_current(life.current - value)
-	$AnimationPlayer.play("flash")
-	$invincible.start()
+	if airspin != 1:
+		spin = 0
+		$AnimationPlayer.stop()
+		movement.x = 0
+		dano = 1
+		$AnimatedSprite.play("hit")
+		Socket.write_text("ataque\n")
+		life.set_current(life.current - value)
+		$AnimationPlayer.play("flash")
+		$invincible.start()
 func _on_invincible_timeout():
 	$AnimationPlayer.stop()
 	self.visible = true
+	dano = 0
 	pass # Replace with function body.
 
 
 func _on_AirSlash_body_entered(body):
 	if body.is_in_group("frog"):
+		movement.y = -jump
 		body.dead()
+		if eixo_horizontal != 0:
+			movement.x += -jump * eixo_horizontal
+			
+	if body.is_in_group("fat"):
+		movement.y = -jump
+		body.hit(1)
+		if eixo_horizontal != 0:
+			movement.x += -jump * eixo_horizontal
+	
+	if body.is_in_group("robot"):
+		movement.y = -jump
+		body.hit(1)
+		if eixo_horizontal != 0:
+			movement.x += -jump * eixo_horizontal	
 	pass # Replace with function body.
 
 
 func _on_ground_kick_body_entered(body):
 	if body.is_in_group("frog"):
 		body.dead()
+	if body.is_in_group("fat"):
+		body.hit(1)
 	pass # Replace with function body.

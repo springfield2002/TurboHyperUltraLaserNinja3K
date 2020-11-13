@@ -7,12 +7,12 @@
 [ext_resource path="res://Assets/Game_elements/text box.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/deathScene.tscn" type="PackedScene" id=6]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=9]
 size = 24
 outline_color = Color( 1, 0.0431373, 0.0431373, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=10]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -27,14 +27,13 @@ void fragment()
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
 shader_param/cutoff = 1.0
 shader_param/smooth_size = 0.365
 shader_param/mask = ExtResource( 4 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "transition"
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -48,8 +47,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "transitionLVL"
+[sub_resource type="Animation" id=5]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
@@ -96,18 +94,30 @@ COMPLET", "LEVEL
 COMPLETE", "LEVEL
 COMPLETED" ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=13]
 outline_color = Color( 1, 0.0431373, 0.0431373, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.976471, 0.0352941, 0.0352941, 1 )
 border_color = Color( 1, 0.984314, 0.984314, 1 )
 border_blend = true
 shadow_color = Color( 0.137255, 0.137255, 0.137255, 0.6 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.647059, 0.647059, 0.647059, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -115,6 +125,7 @@ script = ExtResource( 3 )
 max_amount = 9
 
 [node name="Popup" type="Popup" parent="."]
+visible = true
 margin_left = 301.374
 margin_top = 219.514
 margin_right = 694.374
@@ -145,12 +156,11 @@ margin_left = 49.4368
 margin_top = 65.6552
 margin_right = 379.437
 margin_bottom = 122.655
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "LEVEL
-COMPLETED"
+text = "L"
 align = 1
 valign = 1
 __meta__ = {
@@ -158,7 +168,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 11 )
 margin_left = 1.81079
 margin_top = 11.0
 margin_right = 1025.81
@@ -169,8 +179,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
-anims/transition = SubResource( 3 )
-anims/transitionLVL = SubResource( 4 )
+anims/transition = SubResource( 12 )
+anims/transitionLVL = SubResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 1.81079
@@ -188,7 +198,7 @@ margin_left = 26.6236
 margin_top = 36.1278
 margin_right = 356.624
 margin_bottom = 83.1278
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -209,8 +219,8 @@ margin_left = 86.0
 margin_top = 56.0
 margin_right = 355.0
 margin_bottom = 82.0
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/fg = SubResource( 14 )
+custom_styles/bg = SubResource( 8 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 value = 50.0
 percent_visible = false
@@ -219,6 +229,7 @@ __meta__ = {
 }
 
 [node name="Control" parent="." instance=ExtResource( 6 )]
+pause_mode = 2
 visible = false
 [connection signal="changed" from="." to="ProgressBar" method="set_value"]
 [connection signal="depleted" from="." to="." method="_on_CanvasLayer_depleted"]
