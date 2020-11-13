@@ -3,9 +3,8 @@ extends Node2D
 
 # Declare member variables here. Examples:
 # var a = 2
-# var b = "text"
-
-
+var ultraNinja = preload("res://Instances/Main Character/ULN3K/UltraLaserNinja3000.tscn")
+var change = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Socket.connect_to_server()
@@ -36,3 +35,15 @@ func _on_Area2D2_body_entered(body):
 		yield($speedwagon/CanvasLayer/AnimationPlayer, "animation_finished")		
 		get_tree().change_scene("res://Scenes/level3/Level3.tscn")
 	pass # Replace with function body.
+
+
+func _on_Node2D_change():
+	if change == 0:
+		var player = ultraNinja.instance()
+		player.position = get_global_position()
+		self.remove_child($speedwagon)
+		self.add_child(player)
+		change = 1
+		
+		
+	pass # Replace with functionbody.
