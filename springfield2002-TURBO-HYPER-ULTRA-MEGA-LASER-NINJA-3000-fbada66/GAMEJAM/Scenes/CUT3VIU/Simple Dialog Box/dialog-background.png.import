@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dialog-background.png-a0eaa234b9219b6e7d3412e8fb69f7ba.stex"
+path="res://.import/dialog-background.png-94935937ef932e4511b99fafd1c592f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialog-background.png"
-dest_files=[ "res://.import/dialog-background.png-a0eaa234b9219b6e7d3412e8fb69f7ba.stex" ]
+source_file="res://Scenes/CUT3VIU/Simple Dialog Box/dialog-background.png"
+dest_files=[ "res://.import/dialog-background.png-94935937ef932e4511b99fafd1c592f3.stex" ]
 
 [params]
 

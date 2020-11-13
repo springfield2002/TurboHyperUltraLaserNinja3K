@@ -29,7 +29,7 @@ func load_dialog():
 		)
 		$Tween.start()
 	else:
-		queue_free()
+			get_tree().change_scene("res://Scenes/level2/Level2.tscn")
 	dialog_index += 1
 
 

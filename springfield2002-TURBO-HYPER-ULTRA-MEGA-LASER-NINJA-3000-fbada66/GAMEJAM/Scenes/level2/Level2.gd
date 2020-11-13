@@ -33,7 +33,7 @@ func _on_Area2D2_body_entered(body):
 	if body.is_in_group("player"):
 		$speedwagon/CanvasLayer/AnimationPlayer.play("transitionLVL")
 		yield($speedwagon/CanvasLayer/AnimationPlayer, "animation_finished")		
-		get_tree().change_scene("res://Scenes/level3/Level3.tscn")
+		get_tree().change_scene("res://Scenes/CUT3VIU/Simple Dialog Box/CUT3.tscn")
 	pass # Replace with function body.
 
 

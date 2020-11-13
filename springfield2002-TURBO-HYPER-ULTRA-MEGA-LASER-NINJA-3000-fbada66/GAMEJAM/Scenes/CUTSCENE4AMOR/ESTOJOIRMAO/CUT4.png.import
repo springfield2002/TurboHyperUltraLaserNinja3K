@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/perfeitinha.jpg-4969ffcce01f9312fcc9216198fc404f.stex"
+path="res://.import/CUT4.png-4c6aad45c93d3ed2a9726eb581976054.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CUT3VIU/Simple Dialog Box/ASSESTOJOS/perfeitinha.jpg"
-dest_files=[ "res://.import/perfeitinha.jpg-4969ffcce01f9312fcc9216198fc404f.stex" ]
+source_file="res://ESTOJOIRMAO/CUT4.png"
+dest_files=[ "res://.import/CUT4.png-4c6aad45c93d3ed2a9726eb581976054.stex" ]
 
 [params]
 
