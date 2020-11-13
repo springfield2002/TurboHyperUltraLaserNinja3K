@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://dialog-background.png" type="Texture" id=1]
-[ext_resource path="res://Fonts/GaramondPremrPro-Smbd.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://next-indicator.png" type="Texture" id=3]
-[ext_resource path="res://DialogBox.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Tokyo.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Fireballs/Fireball4.tres" type="Texture" id=6]
-[ext_resource path="res://Assets/Fireballs/Fireball2.tres" type="Texture" id=7]
-[ext_resource path="res://Assets/Fireballs/Fireball3.tres" type="Texture" id=8]
-[ext_resource path="res://Assets/Fireballs/Fireball1.tres" type="Texture" id=9]
+[ext_resource path="res://hud/DIALOG/dialog-background.png" type="Texture" id=1]
+[ext_resource path="res://Assets/CUTSCENE/Fonts/GaramondPremrPro-Smbd.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://hud/DIALOG/next-indicator.png" type="Texture" id=3]
+[ext_resource path="res://hud/DIALOG/DialogBox.gd" type="Script" id=4]
+[ext_resource path="res://Assets/CUTSCENE/Assets/Tokyo.png" type="Texture" id=5]
+[ext_resource path="res://Assets/CUTSCENE/Assets/Fireballs/Fireball4.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/CUTSCENE/Assets/Fireballs/Fireball2.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/CUTSCENE/Assets/Fireballs/Fireball3.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/CUTSCENE/Assets/Fireballs/Fireball1.tres" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30

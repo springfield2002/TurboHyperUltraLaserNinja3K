@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/Background/Backgrounds/Floorfase2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Background/Backgrounds/BG2FASE2.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Background/Backgrounds/Subterrâneo.png" type="Texture" id=5]
 [ext_resource path="res://Instances/Main Character/ULN3K/UltraLaserNinja3000.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/level2/Level2.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Game_elements/Enemy/Ninja_Robot/Ninja_Robot.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Floorfase2.png 0"
@@ -429,5 +430,9 @@ shape = SubResource( 15 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2( 4308.54, 1907.18 )
 shape = SubResource( 16 )
+
+[node name="Ninja_Robot" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4140.78, 2198.93 )
+scale = Vector2( 1.5, 1.5 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]

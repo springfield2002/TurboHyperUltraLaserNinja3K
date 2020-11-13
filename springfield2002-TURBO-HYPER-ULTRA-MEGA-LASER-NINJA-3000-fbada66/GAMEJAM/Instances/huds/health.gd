@@ -34,3 +34,8 @@ func _initialize():
 
 
 
+
+
+func _on_CanvasLayer_depleted():
+	$Control/AnimationPlayer.play("death")
+	pass # Replace with function body.

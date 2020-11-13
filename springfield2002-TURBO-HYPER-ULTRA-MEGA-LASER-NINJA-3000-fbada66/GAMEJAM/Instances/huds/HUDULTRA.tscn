@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/8bitlim.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/RobotNinja/face.tres" type="Texture" id=2]
 [ext_resource path="res://Instances/huds/health.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Game_elements/WhatsApp Image 2020-11-11 at 9.14.02 PM.jpeg" type="Texture" id=4]
 [ext_resource path="res://Assets/Game_elements/text box.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/deathScene.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=5]
-size = 20
-outline_color = Color( 0, 0, 0, 1 )
+size = 24
+outline_color = Color( 1, 0.0431373, 0.0431373, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="Shader" id=1]
@@ -28,7 +29,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/cutoff = 0.0
+shader_param/cutoff = 1.0
 shader_param/smooth_size = 0.365
 shader_param/mask = ExtResource( 4 )
 
@@ -57,10 +58,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 2, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 1.0, 0.0 ]
+"values": [ 1.0, 1.0, 0.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../Popup:visible")
@@ -95,6 +96,10 @@ COMPLET", "LEVEL
 COMPLETE", "LEVEL
 COMPLETED" ]
 }
+
+[sub_resource type="DynamicFont" id=8]
+outline_color = Color( 1, 0.0431373, 0.0431373, 1 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.976471, 0.0352941, 0.0352941, 1 )
@@ -136,10 +141,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Popup"]
-margin_left = 42.2821
-margin_top = 67.6552
-margin_right = 372.282
-margin_bottom = 114.655
+margin_left = 49.4368
+margin_top = 65.6552
+margin_right = 379.437
+margin_bottom = 122.655
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
@@ -154,8 +159,10 @@ __meta__ = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_left = 1.81079
+margin_top = 11.0
+margin_right = 1025.81
+margin_bottom = 611.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -177,11 +184,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 56.2886
-margin_top = 32.9494
-margin_right = 386.289
-margin_bottom = 79.9494
-custom_fonts/font = SubResource( 5 )
+margin_left = 26.6236
+margin_top = 36.1278
+margin_right = 356.624
+margin_bottom = 83.1278
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -194,9 +201,10 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchor_left = -0.00195313
-anchor_top = -6.35783e-09
-anchor_right = -0.00195313
+anchor_left = -0.00409102
+anchor_top = 0.00629251
+anchor_right = -0.00409102
+anchor_bottom = 0.00629252
 margin_left = 86.0
 margin_top = 56.0
 margin_right = 355.0
@@ -209,5 +217,9 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="Control" parent="." instance=ExtResource( 6 )]
+visible = false
 [connection signal="changed" from="." to="ProgressBar" method="set_value"]
+[connection signal="depleted" from="." to="." method="_on_CanvasLayer_depleted"]
 [connection signal="max_changed" from="." to="ProgressBar" method="set_max"]
