@@ -28,7 +28,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = SubResource( 6 )
-shader_param/cutoff = 1.0
+shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.192
 shader_param/mask = ExtResource( 5 )
 
@@ -55,10 +55,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PoolRealArray( 0, 0.001, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [  ]
+"values": [ false, true, false ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ColorRect:visible")
@@ -212,7 +212,8 @@ custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "L"
+text = "LEVEL
+COMPLETED"
 align = 1
 valign = 1
 __meta__ = {
@@ -221,6 +222,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource( 7 )
 margin_top = -1.0
 margin_right = 1024.0

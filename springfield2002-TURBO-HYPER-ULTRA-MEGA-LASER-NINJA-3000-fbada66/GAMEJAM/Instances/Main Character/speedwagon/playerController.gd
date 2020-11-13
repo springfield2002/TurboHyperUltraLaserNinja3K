@@ -27,7 +27,7 @@ func _on_ataque():
 			$AirSlash/CollisionShape2D.disabled = false
 			$AnimationPlayer.stop()
 			$AnimatedSprite.play("airslash")
-		
+			$CollisionShape2D.disabled = true
 	if is_on_floor() and movement.x == 0:
 		dano = 1
 		$AnimationPlayer.stop(true)
@@ -73,10 +73,12 @@ func _physics_process(delta):
 		$AnimatedSprite.rotation_degrees = 0
 		
 	if is_on_floor():
+		
 		second_jump = 3
 		if shift == 0:
 			spin = 0
 			$AirSlash/CollisionShape2D.disabled = true
+			$CollisionShape2D.disabled = false
 			attack = 0
 		
 	
@@ -173,6 +175,7 @@ func _on_Node2D_life(amount):
 	pass # Replace with function body.
 
 func hit(value):
+	spin = 0
 	$AnimationPlayer.stop()
 	movement.x = 0
 	$AnimatedSprite.play("hit")

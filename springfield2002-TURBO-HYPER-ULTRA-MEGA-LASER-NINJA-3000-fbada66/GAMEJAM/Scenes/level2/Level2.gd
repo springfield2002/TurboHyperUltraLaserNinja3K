@@ -25,8 +25,8 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("player"):
-		$Node2D/Camera2D.limit_bottom = 2335
-		$Node2D/Camera2D.limit_right = 4415
+		$UltraNinja/Camera2D.limit_bottom = 2335
+		$UltraNinja/Camera2D.limit_right = 4415
 	pass # Replace with function body.
 
 
