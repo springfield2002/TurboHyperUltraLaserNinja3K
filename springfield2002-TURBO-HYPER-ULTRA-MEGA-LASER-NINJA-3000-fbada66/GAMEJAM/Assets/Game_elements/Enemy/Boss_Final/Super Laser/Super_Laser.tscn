@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Enemy/Boss_Final/Super Laser/Anim/fire0.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Game_elements/Enemy/Boss_Final/Super Laser/Anim/fire3.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Game_elements/Enemy/Boss_Final/Super Laser/Anim/fire2.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/Game_elements/Enemy/Boss_Final/Super Laser/Anim/fire1.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Enemy/Boss_Final/Super Laser/Super_Laser.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 28.4479
+
+[node name="Super_Laser" type="Area2D"]
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 25.536, 1.12246 )
+shape = SubResource( 2 )

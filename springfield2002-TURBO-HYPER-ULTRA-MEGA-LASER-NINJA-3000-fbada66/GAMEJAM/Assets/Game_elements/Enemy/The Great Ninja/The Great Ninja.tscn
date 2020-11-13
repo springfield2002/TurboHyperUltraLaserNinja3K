@@ -1,0 +1,88 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Idle/Idle0.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Idle/Idle1.tres" type="Texture" id=2]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Idle/Idle3.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Idle/Idle2.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Attack/attack3.tres" type="Texture" id=5]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Attack/attack4.tres" type="Texture" id=6]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Attack/attack0.tres" type="Texture" id=7]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Attack/attack2.tres" type="Texture" id=8]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Attack/attack1.tres" type="Texture" id=9]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Walk/Walk2.tres" type="Texture" id=10]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Walk/Walk3.tres" type="Texture" id=11]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Walk/Walk4.tres" type="Texture" id=12]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Walk/Walk1.tres" type="Texture" id=13]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/Walk/Walk0.tres" type="Texture" id=14]
+[ext_resource path="res://Assets/Game_elements/Enemy/The Great Ninja/The Great Ninja.gd" type="Script" id=20]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 30.5
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.1263, 28.7245 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 108.572, 127.631 )
+
+[node name="The Great Ninja" type="KinematicBody2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 20 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+animation = "Idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Area2DLeft" type="Area2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="Area2DLeft"]
+position = Vector2( -30, 0 )
+shape = SubResource( 3 )
+
+[node name="Area2DRight" type="Area2D" parent="."]
+
+[node name="Right" type="CollisionShape2D" parent="Area2DRight"]
+position = Vector2( 30, 0 )
+shape = SubResource( 3 )
+
+[node name="EyeL" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EyeL"]
+position = Vector2( -200, -99 )
+shape = SubResource( 4 )
+
+[node name="EyeD" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EyeD"]
+position = Vector2( 200, -99 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Area2DLeft" to="." method="_on_Area2DLeft_body_entered"]
+[connection signal="body_exited" from="Area2DLeft" to="." method="_on_Area2DLeft_body_exited"]
+[connection signal="body_entered" from="Area2DRight" to="." method="_on_Area2DRight_body_entered"]
+[connection signal="body_exited" from="Area2DRight" to="." method="_on_Area2DRight_body_exited"]
+[connection signal="body_entered" from="EyeL" to="." method="_on_EyeL_body_entered"]
+[connection signal="body_exited" from="EyeL" to="." method="_on_EyeL_body_exited"]
+[connection signal="body_entered" from="EyeD" to="." method="_on_EyeD_body_entered"]
+[connection signal="body_exited" from="EyeD" to="." method="_on_EyeD_body_exited"]
