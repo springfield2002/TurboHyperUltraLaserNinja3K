@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon2.tres" type="Texture" id=1]
 [ext_resource path="res://Assets/Game_elements/Player/speedwagon/idle/speedwagon1.tres" type="Texture" id=2]
@@ -35,7 +35,7 @@ animations = [ {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "hit",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
@@ -145,6 +145,23 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 9 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "flash"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -320,6 +337,10 @@ tracks/4/keys = {
 position = Vector2( 0, -3.36359 )
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 11 )
+movement = null
+speed = null
+jump = null
+gravity = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.2, 1.2 )
@@ -352,6 +373,7 @@ smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/duck = SubResource( 5 )
+anims/flash = SubResource( 9 )
 anims/ground_kick = SubResource( 6 )
 anims/idle = SubResource( 7 )
 anims/walking = SubResource( 8 )
@@ -359,3 +381,6 @@ anims/walking = SubResource( 8 )
 [node name="CanvasLayer" parent="." groups=[
 "player",
 ] instance=ExtResource( 19 )]
+
+[node name="invincible" type="Timer" parent="."]
+[connection signal="timeout" from="invincible" to="." method="_on_invincible_timeout"]
