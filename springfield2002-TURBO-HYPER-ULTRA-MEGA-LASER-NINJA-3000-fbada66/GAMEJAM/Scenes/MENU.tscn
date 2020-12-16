@@ -262,10 +262,10 @@ scale = Vector2( 1.00615, 1.0756 )
 texture = ExtResource( 5 )
 
 [node name="PLAY" type="Button" parent="."]
-margin_left = 826.177
-margin_top = 150.261
-margin_right = 978.177
-margin_bottom = 181.261
+margin_left = 817.188
+margin_top = 146.485
+margin_right = 969.188
+margin_bottom = 177.485
 custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0.937255, 0, 0.945098, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
@@ -277,9 +277,9 @@ __meta__ = {
 
 [node name="QUIT" type="Button" parent="."]
 margin_left = 817.188
-margin_top = 201.203
+margin_top = 188.0
 margin_right = 969.188
-margin_bottom = 232.203
+margin_bottom = 219.0
 custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0.937255, 0, 0.945098, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
